@@ -1,0 +1,304 @@
+[
+  {
+    "name": "Thorin Ironbeard",
+    "class": "Fighter",
+    "level": 3,
+    "background": "Soldier",
+    "player_name": "Alex",
+    "race": "Dwarf",
+    "ability_scores": {
+      "strength": 16,
+      "dexterity": 12,
+      "constitution": 15,
+      "intelligence": 10,
+      "wisdom": 13,
+      "charisma": 11
+    },
+    "combat_stats": {
+      "armor_class": 18,
+      "initiative": 1,
+      "speed": 25
+    },
+    "hit_points": {
+      "current": 28,
+      "maximum": 32,
+      "temporary": 0
+    },
+    "hit_dice": {
+      "die": "d10",
+      "total": 3,
+      "remaining": 3
+    },
+    "death_saves": {
+      "successes": 0,
+      "failures": 0
+    },
+    "proficient_skills": [
+      "athletics",
+      "intimidation",
+      "survival"
+    ],
+    "proficient_saving_throws": [
+      "strength",
+      "constitution"
+    ],
+    "equipment": [
+      "Chain Mail",
+      "Shield",
+      "Longsword",
+      "Handaxe (2)",
+      "Dungeoneer's Pack",
+      "Insignia of Rank",
+      "Set of Bone Dice",
+      "Common Clothes",
+      "10 gp"
+    ],
+    "features": [
+      {
+        "name": "Fighting Style: Defense",
+        "description": "+1 AC when wearing armor"
+      },
+      {
+        "name": "Second Wind",
+        "description": "Bonus action to regain 1d10+3 HP",
+        "uses": {
+          "max": 1,
+          "remaining": 1,
+          "refresh": "short_rest"
+        }
+      },
+      {
+        "name": "Action Surge",
+        "description": "Take one additional action",
+        "uses": {
+          "max": 1,
+          "remaining": 1,
+          "refresh": "short_rest"
+        }
+      },
+      {
+        "name": "Dwarven Resilience",
+        "description": "Advantage on saves vs poison, resistance to poison damage"
+      },
+      {
+        "name": "Darkvision",
+        "description": "60 ft"
+      }
+    ],
+    "traits": [
+      "I can stare down a hell hound without flinching.",
+      "I enjoy being strong and like breaking things.",
+      "I face problems head-on. A simple, direct solution is the best path to success."
+    ]
+  },
+  {
+    "name": "Elara Starweaver",
+    "class": "Wizard",
+    "level": 5,
+    "background": "Sage",
+    "player_name": "Morgan",
+    "race": "Elf",
+    "ability_scores": {
+      "strength": 8,
+      "dexterity": 14,
+      "constitution": 13,
+      "intelligence": 16,
+      "wisdom": 12,
+      "charisma": 10
+    },
+    "combat_stats": {
+      "armor_class": 12,
+      "initiative": 2,
+      "speed": 30
+    },
+    "hit_points": {
+      "current": 32,
+      "maximum": 32,
+      "temporary": 0
+    },
+    "hit_dice": {
+      "die": "d6",
+      "total": 5,
+      "remaining": 5
+    },
+    "death_saves": {
+      "successes": 0,
+      "failures": 0
+    },
+    "proficient_skills": [
+      "arcana",
+      "history",
+      "investigation",
+      "insight"
+    ],
+    "proficient_saving_throws": [
+      "intelligence",
+      "wisdom"
+    ],
+    "equipment": [
+      "Spellbook",
+      "Component Pouch",
+      "Scholar's Pack",
+      "Quarterstaff",
+      "Dagger",
+      "Robes",
+      "10 gp"
+    ],
+    "features": [
+      {
+        "name": "Spellcasting",
+        "description": "You are a full spellcaster with access to the wizard spell list"
+      },
+      {
+        "name": "Arcane Recovery",
+        "description": "Regain spell slots on short rest",
+        "uses": {
+          "max": 1,
+          "remaining": 1,
+          "refresh": "long_rest"
+        }
+      },
+      {
+        "name": "Elven Weapon Training",
+        "description": "Proficient with longsword, shortsword, shortbow, and longbow"
+      },
+      {
+        "name": "Darkvision",
+        "description": "60 ft"
+      }
+    ],
+    "traits": [
+      "I use polysyllabic words that convey the impression of great erudition.",
+      "I've read every book in the world's greatest libraries—or I like to boast that I have.",
+      "I am easily distracted by the promise of information."
+    ],
+    "spellcasting": {
+      "spell_slots": {
+        "1st": {
+          "total": 4,
+          "used": 2
+        },
+        "2nd": {
+          "total": 3,
+          "used": 1
+        },
+        "3rd": {
+          "total": 2,
+          "used": 0
+        }
+      },
+      "spells_known": [
+        {
+          "name": "Magic Missile",
+          "level": 1,
+          "school": "Evocation",
+          "prepared": true
+        },
+        {
+          "name": "Shield",
+          "level": 1,
+          "school": "Abjuration",
+          "prepared": true
+        },
+        {
+          "name": "Mage Armor",
+          "level": 1,
+          "school": "Abjuration",
+          "prepared": true
+        },
+        {
+          "name": "Fireball",
+          "level": 3,
+          "school": "Evocation",
+          "prepared": true
+        }
+      ],
+      "spell_save_dc": 14,
+      "spell_attack_bonus": 6
+    }
+  },
+  {
+    "name": "Lyra Nightwhisper",
+    "class": "Rogue",
+    "level": 4,
+    "background": "Criminal",
+    "player_name": "Jordan",
+    "race": "Halfling",
+    "ability_scores": {
+      "strength": 10,
+      "dexterity": 16,
+      "constitution": 12,
+      "intelligence": 14,
+      "wisdom": 13,
+      "charisma": 15
+    },
+    "combat_stats": {
+      "armor_class": 14,
+      "initiative": 3,
+      "speed": 25
+    },
+    "hit_points": {
+      "current": 28,
+      "maximum": 28,
+      "temporary": 0
+    },
+    "hit_dice": {
+      "die": "d8",
+      "total": 4,
+      "remaining": 4
+    },
+    "death_saves": {
+      "successes": 0,
+      "failures": 0
+    },
+    "proficient_skills": [
+      "acrobatics",
+      "deception",
+      "investigation",
+      "perception",
+      "sleight_of_hand",
+      "stealth"
+    ],
+    "proficient_saving_throws": [
+      "dexterity",
+      "intelligence"
+    ],
+    "equipment": [
+      "Leather Armor",
+      "Shortsword",
+      "Shortbow",
+      "Thieves' Tools",
+      "Burglar's Pack",
+      "Crowbar",
+      "Dark Clothes",
+      "15 gp"
+    ],
+    "features": [
+      {
+        "name": "Sneak Attack",
+        "description": "Deal extra damage when you have advantage or an ally is within 5 feet"
+      },
+      {
+        "name": "Thieves' Cant",
+        "description": "Secret language known only to rogues and criminals"
+      },
+      {
+        "name": "Cunning Action",
+        "description": "Dash, Disengage, or Hide as a bonus action"
+      },
+      {
+        "name": "Halfling Luck",
+        "description": "Reroll 1s on d20 rolls"
+      },
+      {
+        "name": "Brave",
+        "description": "Advantage on saves vs being frightened"
+      }
+    ],
+    "traits": [
+      "I always have a plan for what to do when things go wrong.",
+      "I am incredibly slow to trust. Those who seem the fairest often have the most to hide.",
+      "I don't pay attention to the risks in a situation. Never tell me the odds."
+    ]
+  }
+]
