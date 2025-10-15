@@ -1,0 +1,73 @@
+{
+  "identity": {
+    "name": "Thorin Ironbeard",
+    "class": "Fighter",
+    "level": 3,
+    "race": "Dwarf",
+    "background": "Soldier",
+    "alignment": "Lawful Good",
+    "age": 45,
+    "height": "4'8\"",
+    "weight": "180 lbs",
+    "eyes": "Brown",
+    "skin": "Pale",
+    "hair": "Black"
+  },
+  "abilities": {
+    "str": 16,
+    "dex": 12,
+    "con": 15,
+    "int": 10,
+    "wis": 13,
+    "cha": 11
+  },
+  "proficiencies": {
+    "saves": ["str", "con"],
+    "skills": ["athletics", "intimidation", "survival"]
+  },
+  "combat": {
+    "armor_base_ac": 18,
+    "initiative_misc": 1,
+    "speed_ft": 25,
+    "weapons": [
+      {
+        "name": "Longsword",
+        "ability": "str",
+        "bonus_misc": 0,
+        "damage": "1d8+3 slashing"
+      },
+      {
+        "name": "Handaxe",
+        "ability": "str",
+        "bonus_misc": 0,
+        "damage": "1d6+3 slashing"
+      }
+    ]
+  },
+  "spellcasting": null,
+  "inventory": {
+    "equipment_text": "Chain Mail, Shield, Longsword, Handaxe (2), Dungeoneer's Pack, Insignia of Rank, Set of Bone Dice, Common Clothes",
+    "currency": {
+      "cp": 0,
+      "sp": 0,
+      "ep": 0,
+      "gp": 10,
+      "pp": 0
+    }
+  },
+  "roleplay": {
+    "personality_traits": "I can stare down a hell hound without flinching. I enjoy being strong and like breaking things.",
+    "ideals": "I face problems head-on. A simple, direct solution is the best path to success.",
+    "bonds": "I would still lay down my life for the people I served with.",
+    "flaws": "I have little respect for anyone who is not a proven warrior.",
+    "feats_and_traits": "Dwarven Resilience, Stonecunning, Fighting Style: Defense, Second Wind",
+    "features_and_traits": "Dwarven Resilience: Advantage on saves vs poison. Stonecunning: Double proficiency on History checks related to stonework.",
+    "proficiencies_and_languages": "Common, Dwarvish, Smith's Tools, Mason's Tools",
+    "allies": "The Ironbeard Clan, The Stoneguard Regiment",
+    "faction_name": "The Stoneguard",
+    "faction_symbol_image": null,
+    "backstory": "A veteran soldier who served in the Stoneguard Regiment, defending the mountain passes from orc raids.",
+    "treasure": "A family heirloom warhammer passed down through generations.",
+    "character_image": null
+  }
+}

@@ -1,9 +1,7 @@
-import CharacterSheet from './components/CharacterSheet';
+import CharacterSheetFiller from './components/CharacterSheetFiller';
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gray-100 py-8">
-      <CharacterSheet />
-    </div>
+    <CharacterSheetFiller />
   );
 }
