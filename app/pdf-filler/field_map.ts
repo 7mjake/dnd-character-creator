@@ -32,7 +32,6 @@ export interface InputModel {
   };
   combat: {
     armor_base_ac?: number | null; // optional override (e.g., chain mail 16 + shield)
-    initiative_misc?: number | null; // misc init bonus (e.g. Alert feat)
     speed_ft: number;
     hit_points_max?: number | null; // max HP (if not provided, will be calculated)
     hit_dice_total?: string | null; // e.g., "3d10" (if not provided, will be calculated)
@@ -171,7 +170,7 @@ export function computeDerived(model: InputModel) {
   });
 
   const passivePerception = 10 + skills.perception;
-  const initiative = mods.dex + (model.combat.initiative_misc ?? 0);
+  const initiative = mods.dex;
   // Simple fallback AC: 10 + Dex mod (you can replace with richer armor logic)
   const armorClass = model.combat.armor_base_ac ?? (10 + mods.dex);
   
@@ -257,46 +256,46 @@ export function toPdfFields(model: InputModel): PdfFields {
   out.wis = s.wis;
   out.char = s.cha;
 
-  // Ability modifiers
-  out.strMod = m.str;
-  out.dexMod = m.dex;
-  out.conMod = m.con;
-  out.intMod = m.int;
-  out.wisMod = m.wis;
-  out.charMod = m.cha;
+  // Ability modifiers (with + or - prefix)
+  out.strMod = m.str >= 0 ? `+${m.str}` : `${m.str}`;
+  out.dexMod = m.dex >= 0 ? `+${m.dex}` : `${m.dex}`;
+  out.conMod = m.con >= 0 ? `+${m.con}` : `${m.con}`;
+  out.intMod = m.int >= 0 ? `+${m.int}` : `${m.int}`;
+  out.wisMod = m.wis >= 0 ? `+${m.wis}` : `${m.wis}`;
+  out.charMod = m.cha >= 0 ? `+${m.cha}` : `${m.cha}`;
 
-  // Saving throws
-  out.strSave = v.saves.str;
-  out.dexSave = v.saves.dex;
-  out.conSave = v.saves.con;
-  out.intSave = v.saves.int;
-  out.wisSave = v.saves.wis;
-  out.charSave = v.saves.cha;
+  // Saving throws (with + or - prefix)
+  out.strSave = v.saves.str >= 0 ? `+${v.saves.str}` : `${v.saves.str}`;
+  out.dexSave = v.saves.dex >= 0 ? `+${v.saves.dex}` : `${v.saves.dex}`;
+  out.conSave = v.saves.con >= 0 ? `+${v.saves.con}` : `${v.saves.con}`;
+  out.intSave = v.saves.int >= 0 ? `+${v.saves.int}` : `${v.saves.int}`;
+  out.wisSave = v.saves.wis >= 0 ? `+${v.saves.wis}` : `${v.saves.wis}`;
+  out.charSave = v.saves.cha >= 0 ? `+${v.saves.cha}` : `${v.saves.cha}`;
 
-  // Skills
-  out.acrobatics = v.skills.acrobatics;
-  out.animalHandling = v.skills.animal_handling;
-  out.arcana = v.skills.arcana;
-  out.athletics = v.skills.athletics;
-  out.deception = v.skills.deception;
-  out.history = v.skills.history;
-  out.insight = v.skills.insight;
-  out.intimidation = v.skills.intimidation;
-  out.investigation = v.skills.investigation;
-  out.medicine = v.skills.medicine;
-  out.nature = v.skills.nature;
-  out.perception = v.skills.perception;
-  out.performance = v.skills.performance;
-  out.persuasion = v.skills.persuasion;
-  out.religion = v.skills.religion;
-  out.sleightOfHand = v.skills.sleight_of_hand;
-  out.stealth = v.skills.stealth;
-  out.survival = v.skills.survival;
+  // Skills (with + or - prefix)
+  out.acrobatics = v.skills.acrobatics >= 0 ? `+${v.skills.acrobatics}` : `${v.skills.acrobatics}`;
+  out.animalHandling = v.skills.animal_handling >= 0 ? `+${v.skills.animal_handling}` : `${v.skills.animal_handling}`;
+  out.arcana = v.skills.arcana >= 0 ? `+${v.skills.arcana}` : `${v.skills.arcana}`;
+  out.athletics = v.skills.athletics >= 0 ? `+${v.skills.athletics}` : `${v.skills.athletics}`;
+  out.deception = v.skills.deception >= 0 ? `+${v.skills.deception}` : `${v.skills.deception}`;
+  out.history = v.skills.history >= 0 ? `+${v.skills.history}` : `${v.skills.history}`;
+  out.insight = v.skills.insight >= 0 ? `+${v.skills.insight}` : `${v.skills.insight}`;
+  out.intimidation = v.skills.intimidation >= 0 ? `+${v.skills.intimidation}` : `${v.skills.intimidation}`;
+  out.investigation = v.skills.investigation >= 0 ? `+${v.skills.investigation}` : `${v.skills.investigation}`;
+  out.medicine = v.skills.medicine >= 0 ? `+${v.skills.medicine}` : `${v.skills.medicine}`;
+  out.nature = v.skills.nature >= 0 ? `+${v.skills.nature}` : `${v.skills.nature}`;
+  out.perception = v.skills.perception >= 0 ? `+${v.skills.perception}` : `${v.skills.perception}`;
+  out.performance = v.skills.performance >= 0 ? `+${v.skills.performance}` : `${v.skills.performance}`;
+  out.persuasion = v.skills.persuasion >= 0 ? `+${v.skills.persuasion}` : `${v.skills.persuasion}`;
+  out.religion = v.skills.religion >= 0 ? `+${v.skills.religion}` : `${v.skills.religion}`;
+  out.sleightOfHand = v.skills.sleight_of_hand >= 0 ? `+${v.skills.sleight_of_hand}` : `${v.skills.sleight_of_hand}`;
+  out.stealth = v.skills.stealth >= 0 ? `+${v.skills.stealth}` : `${v.skills.stealth}`;
+  out.survival = v.skills.survival >= 0 ? `+${v.skills.survival}` : `${v.skills.survival}`;
 
   // Combat stats
-  out.profBonus = v.prof_bonus;
+  out.profBonus = v.prof_bonus >= 0 ? `+${v.prof_bonus}` : `${v.prof_bonus}`;
   out.armorClass = v.combat.armor_class;
-  out.initiative = v.combat.initiative;
+  out.initiative = v.combat.initiative >= 0 ? `+${v.combat.initiative}` : `${v.combat.initiative}`;
   out.speed = v.combat.speed_ft;
   out.hpMax = v.combat.hit_points_max;
   out.hitDice = v.combat.hit_dice_total;
@@ -306,17 +305,17 @@ export function toPdfFields(model: InputModel): PdfFields {
   const w = v.combat.weapons;
   if (w[0]) { 
     out.attackNameOne = w[0].name; 
-    out.attackBonusOne = w[0].attack_bonus; 
+    out.attackBonusOne = w[0].attack_bonus >= 0 ? `+${w[0].attack_bonus}` : `${w[0].attack_bonus}`; 
     out.attackDamageOne = w[0].damage; 
   }
   if (w[1]) { 
     out.attackNameTwo = w[1].name; 
-    out.attackBonusTwo = w[1].attack_bonus; 
+    out.attackBonusTwo = w[1].attack_bonus >= 0 ? `+${w[1].attack_bonus}` : `${w[1].attack_bonus}`; 
     out.attackDamageTwo = w[1].damage; 
   }
   if (w[2]) { 
     out.attackNameThree = w[2].name; 
-    out.attackBonusThree = w[2].attack_bonus; 
+    out.attackBonusThree = w[2].attack_bonus >= 0 ? `+${w[2].attack_bonus}` : `${w[2].attack_bonus}`; 
     out.attackDamageThree = w[2].damage; 
   }
 

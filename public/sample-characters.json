@@ -32,7 +32,6 @@
         },
         "combat": {
           "armor_base_ac": 18,
-          "initiative_misc": 1,
           "speed_ft": 25,
           "weapons": [
             {
@@ -111,7 +110,6 @@
         },
         "combat": {
           "armor_base_ac": 12,
-          "initiative_misc": 0,
           "speed_ft": 30,
           "weapons": [
             {
@@ -225,7 +223,6 @@
         },
         "combat": {
           "armor_base_ac": 14,
-          "initiative_misc": 0,
           "speed_ft": 25,
           "weapons": [
             {

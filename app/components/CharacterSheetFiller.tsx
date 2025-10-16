@@ -302,7 +302,7 @@ const CharacterSheetFiller: React.FC = () => {
                   <div className="text-sm text-gray-600 space-y-1">
                     <p><strong>AC:</strong> {characterData.combat.armor_base_ac ?? (10 + Math.floor((characterData.abilities.dex - 10) / 2))}</p>
                     <p><strong>Speed:</strong> {characterData.combat.speed_ft} ft</p>
-                    <p><strong>Initiative:</strong> {Math.floor((characterData.abilities.dex - 10) / 2) + (characterData.combat.initiative_misc ?? 0)}</p>
+                    <p><strong>Initiative:</strong> {Math.floor((characterData.abilities.dex - 10) / 2) >= 0 ? '+' : ''}{Math.floor((characterData.abilities.dex - 10) / 2)}</p>
                   </div>
                 </div>
 
