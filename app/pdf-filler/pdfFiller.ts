@@ -106,6 +106,11 @@ export async function fillCharacterSheetPdf(
     
     console.log(`Successfully filled ${fieldsFilled} of ${Object.keys(pdfFields).length}`);
 
+    // Flatten the form to make it non-editable and reduce file size
+    console.log('🔧 Flattening PDF form fields...');
+    form.flatten();
+    console.log('✅ PDF form fields flattened successfully');
+
     const pdfBytes = await pdfDoc.save();
     const blob = new Blob([new Uint8Array(pdfBytes)], { type: 'application/pdf' });
     
