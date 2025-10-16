@@ -1,0 +1,284 @@
+{
+  "characters": {
+    "fighter": {
+      "name": "Thorin Ironbeard",
+      "description": "A veteran Dwarven Fighter with a strong sense of duty and combat prowess",
+      "data": {
+        "identity": {
+          "name": "Thorin Ironbeard",
+          "class": "Fighter",
+          "level": 3,
+          "race": "Dwarf",
+          "background": "Soldier",
+          "alignment": "Lawful Good",
+          "age": 45,
+          "height": "4'8\"",
+          "weight": "180 lbs",
+          "eyes": "Brown",
+          "skin": "Pale",
+          "hair": "Black"
+        },
+        "abilities": {
+          "str": 16,
+          "dex": 12,
+          "con": 15,
+          "int": 10,
+          "wis": 13,
+          "cha": 11
+        },
+        "proficiencies": {
+          "saves": ["str", "con"],
+          "skills": ["athletics", "intimidation", "survival"]
+        },
+        "combat": {
+          "armor_base_ac": 18,
+          "initiative_misc": 1,
+          "speed_ft": 25,
+          "weapons": [
+            {
+              "name": "Longsword",
+              "ability": "str",
+              "bonus_misc": 0,
+              "damage": "1d8+3 slashing"
+            },
+            {
+              "name": "Handaxe",
+              "ability": "str",
+              "bonus_misc": 0,
+              "damage": "1d6+3 slashing"
+            }
+          ]
+        },
+        "spellcasting": null,
+        "inventory": {
+          "equipment_text": "Chain Mail, Shield, Longsword, Handaxe (2), Dungeoneer's Pack, Insignia of Rank, Set of Bone Dice, Common Clothes",
+          "currency": {
+            "cp": 0,
+            "sp": 0,
+            "ep": 0,
+            "gp": 10,
+            "pp": 0
+          }
+        },
+        "roleplay": {
+          "personality_traits": "I can stare down a hell hound without flinching. I enjoy being strong and like breaking things.",
+          "ideals": "I face problems head-on. A simple, direct solution is the best path to success.",
+          "bonds": "I would still lay down my life for the people I served with.",
+          "flaws": "I have little respect for anyone who is not a proven warrior.",
+          "features_and_traits": [
+            "Dwarven Resilience: Advantage on saves vs poison",
+            "Stonecunning: Double proficiency on History checks related to stonework"
+          ],
+          "proficiencies_and_languages": "Common, Dwarvish, Smith's Tools, Mason's Tools",
+          "allies": "The Ironbeard Clan, The Stoneguard Regiment",
+          "faction_name": "The Stoneguard",
+          "faction_symbol_image": null,
+          "backstory": "A veteran soldier who served in the Stoneguard Regiment, defending the mountain passes from orc raids.",
+          "treasure": "A family heirloom warhammer passed down through generations.",
+          "character_image": null
+        }
+      }
+    },
+    "wizard": {
+      "name": "Elara Starweaver",
+      "description": "A brilliant Elven Wizard seeking ancient knowledge and magical artifacts",
+      "data": {
+        "identity": {
+          "name": "Elara Starweaver",
+          "class": "Wizard",
+          "level": 5,
+          "race": "Elf",
+          "background": "Sage",
+          "alignment": "Chaotic Good",
+          "age": 120,
+          "height": "5'4\"",
+          "weight": "110 lbs",
+          "eyes": "Silver",
+          "skin": "Pale",
+          "hair": "Silver"
+        },
+        "abilities": {
+          "str": 8,
+          "dex": 14,
+          "con": 12,
+          "int": 16,
+          "wis": 13,
+          "cha": 10
+        },
+        "proficiencies": {
+          "saves": ["int", "wis"],
+          "skills": ["arcana", "history", "investigation", "insight"]
+        },
+        "combat": {
+          "armor_base_ac": 12,
+          "initiative_misc": 0,
+          "speed_ft": 30,
+          "weapons": [
+            {
+              "name": "Quarterstaff",
+              "ability": "str",
+              "bonus_misc": 0,
+              "damage": "1d6-1 bludgeoning"
+            },
+            {
+              "name": "Dagger",
+              "ability": "dex",
+              "bonus_misc": 0,
+              "damage": "1d4+2 piercing"
+            }
+          ]
+        },
+        "spellcasting": {
+          "class": "Wizard",
+          "ability": "int",
+          "cantrips": [
+            "Fire Bolt",
+            "Mage Hand",
+            "Prestidigitation",
+            "Ray of Frost"
+          ],
+          "spells_known": {
+            "1": [
+              "Magic Missile",
+              "Shield",
+              "Mage Armor",
+              "Detect Magic",
+              "Identify",
+              "Charm Person"
+            ],
+            "2": [
+              "Misty Step",
+              "Scorching Ray",
+              "Invisibility",
+              "Suggestion"
+            ],
+            "3": [
+              "Fireball",
+              "Counterspell",
+              "Dispel Magic"
+            ]
+          },
+          "slots": {
+            "1": 4,
+            "2": 3,
+            "3": 2
+          }
+        },
+        "inventory": {
+          "equipment_text": "Quarterstaff, Dagger, Component Pouch, Scholar's Pack, Spellbook, Bottle of Black Ink, Quill, Small Knife, Letter from a Dead Colleague, Common Clothes, 10 gp",
+          "currency": {
+            "cp": 0,
+            "sp": 0,
+            "ep": 0,
+            "gp": 10,
+            "pp": 0
+          }
+        },
+        "roleplay": {
+          "personality_traits": "I use polysyllabic words that convey the impression of great erudition. I've read every book in the world's greatest libraries.",
+          "ideals": "Knowledge. The path to power and self-improvement is through knowledge.",
+          "bonds": "I've been searching my whole life for the answer to a certain question.",
+          "flaws": "I am easily distracted by the promise of information.",
+          "features_and_traits": [
+            "Arcane Recovery: Once per day when you finish a short rest, you can recover some of your spell slots",
+            "Spell Mastery: You have achieved such mastery over certain spells that you can cast them at will"
+          ],
+          "proficiencies_and_languages": "Common, Elvish, Draconic, Abyssal, Arcana, History, Investigation, Insight",
+          "allies": "The Arcane University, The Starweaver Family",
+          "faction_name": "The Arcane University",
+          "faction_symbol_image": null,
+          "backstory": "A brilliant young wizard who left the Arcane University to seek ancient knowledge and magical artifacts in the wider world.",
+          "treasure": "A mysterious crystal orb that seems to contain swirling starlight.",
+          "character_image": null
+        }
+      }
+    },
+    "rogue": {
+      "name": "Shadow Whisper",
+      "description": "A cunning Halfling Rogue with a mysterious past and exceptional stealth skills",
+      "data": {
+        "identity": {
+          "name": "Shadow Whisper",
+          "class": "Rogue",
+          "level": 4,
+          "race": "Halfling",
+          "background": "Criminal",
+          "alignment": "Chaotic Neutral",
+          "age": 28,
+          "height": "3'2\"",
+          "weight": "35 lbs",
+          "eyes": "Green",
+          "skin": "Tan",
+          "hair": "Brown"
+        },
+        "abilities": {
+          "str": 10,
+          "dex": 17,
+          "con": 14,
+          "int": 13,
+          "wis": 12,
+          "cha": 15
+        },
+        "proficiencies": {
+          "saves": ["dex", "int"],
+          "skills": ["acrobatics", "deception", "investigation", "perception", "sleight_of_hand", "stealth"]
+        },
+        "combat": {
+          "armor_base_ac": 14,
+          "initiative_misc": 0,
+          "speed_ft": 25,
+          "weapons": [
+            {
+              "name": "Rapier",
+              "ability": "dex",
+              "bonus_misc": 0,
+              "damage": "1d8+3 piercing"
+            },
+            {
+              "name": "Shortbow",
+              "ability": "dex",
+              "bonus_misc": 0,
+              "damage": "1d6+3 piercing"
+            },
+            {
+              "name": "Dagger",
+              "ability": "dex",
+              "bonus_misc": 0,
+              "damage": "1d4+3 piercing"
+            }
+          ]
+        },
+        "spellcasting": null,
+        "inventory": {
+          "equipment_text": "Leather Armor, Rapier, Shortbow, Quiver of 20 Arrows, Dagger (2), Thieves' Tools, Burglar's Pack, Crowbar, Set of Fine Clothes, Belt Pouch with 15 gp",
+          "currency": {
+            "cp": 0,
+            "sp": 0,
+            "ep": 0,
+            "gp": 15,
+            "pp": 0
+          }
+        },
+        "roleplay": {
+          "personality_traits": "I always have a plan for when things go wrong. I am incredibly slow to trust.",
+          "ideals": "Freedom. Chains are meant to be broken, as are those who would forge them.",
+          "bonds": "I'm trying to pay off an old debt I owe to a generous person who helped me when I was younger.",
+          "flaws": "When I see something valuable, I can't think about anything but how to steal it.",
+          "features_and_traits": [
+            "Lucky: When you roll a 1 on an attack roll, ability check, or saving throw, you can reroll the die",
+            "Brave: You have advantage on saving throws against being frightened",
+            "Halfling Nimbleness: You can move through the space of any creature that is of a size larger than yours",
+            "Sneak Attack: Once per turn, you can deal an extra 1d6 damage to one creature you hit with an attack if you have advantage on the attack roll"
+          ],
+          "proficiencies_and_languages": "Common, Halfling, Thieves' Cant, Thieves' Tools, Disguise Kit, Forgery Kit",
+          "allies": "The Shadow Thieves Guild, The Whisper Family",
+          "faction_name": "The Shadow Thieves",
+          "faction_symbol_image": null,
+          "backstory": "A former member of a notorious thieves' guild who turned to adventuring to escape their past and make amends.",
+          "treasure": "A mysterious key that opens a lockbox hidden somewhere in the city.",
+          "character_image": null
+        }
+      }
+    }
+  }
+}

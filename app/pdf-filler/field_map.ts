@@ -59,8 +59,7 @@ export interface InputModel {
     ideals?: string;
     bonds?: string;
     flaws?: string;
-    feats_and_traits?: string;
-    features_and_traits?: string;
+    features_and_traits?: string | string[];
     proficiencies_and_languages?: string;
     allies?: string;
     faction_name?: string;
@@ -86,6 +85,26 @@ export function abilityMod(score: number) {
 export function profBonus(level: number) {
   // 1–4: +2, 5–8: +3, 9–12: +4, 13–16: +5, 17–20: +6
   return Math.floor((level - 1) / 4) + 2;
+}
+
+export function formatListWithDashes(input: string | string[]): string {
+  if (!input) return "";
+  
+  let items: string[];
+  
+  if (Array.isArray(input)) {
+    // If it's already an array, just clean up the items
+    items = input.map(item => item.trim()).filter(item => item.length > 0);
+  } else {
+    // If it's a string, split by commas and clean up each item
+    items = input.split(',').map(item => item.trim()).filter(item => item.length > 0);
+  }
+  
+  if (items.length === 0) return "";
+  if (items.length === 1) return items[0];
+  
+  // Join with line breaks and dashes
+  return items.join('\n—\n');
 }
 
 // Hit dice by class (D&D 5e standard)
@@ -223,114 +242,121 @@ export function toPdfFields(model: InputModel): PdfFields {
   const v = computeDerived(model);
   const out: PdfFields = {};
 
-  // identity
-  out.character_name = v.identity.name;
-  out.class_and_level = `${v.identity.class} ${v.identity.level}`;
-  out.race = v.identity.race;
+  // Character identity
+  out.classAndLevel = `${v.identity.class} ${v.identity.level}`;
   out.background = v.identity.background;
+  out.race = v.identity.race;
   out.alignment = v.identity.alignment;
-  out.age = String(v.identity.age ?? "");
-  out.height = v.identity.height ?? "";
-  out.weight = v.identity.weight ?? "";
-  out.eyes = v.identity.eyes ?? "";
-  out.skin = v.identity.skin ?? "";
-  out.hair = v.identity.hair ?? "";
 
-  // abilities (scores + mods)
+  // Ability scores
   const s = v.abilities.scores, m = v.abilities.mods;
-  out.strength = s.str; out.strength_mod = m.str;
-  out.dexterity = s.dex; out.dexterity_mod = m.dex;
-  out.constitution = s.con; out.constitution_mod = m.con;
-  out.intelligence = s.int; out.intelligence_mod = m.int;
-  out.wisdom = s.wis; out.wisdom_mod = m.wis;
-  out.charisma = s.cha; out.charisma_mod = m.cha;
+  out.str = s.str;
+  out.dex = s.dex;
+  out.con = s.con;
+  out.int = s.int;
+  out.wis = s.wis;
+  out.char = s.cha;
 
-  // saves (derived) + proficiency flags from input model
-  out.save_strength = v.saves.str;
-  out.save_dexterity = v.saves.dex;
-  out.save_constitution = v.saves.con;
-  out.save_intelligence = v.saves.int;
-  out.save_wisdom = v.saves.wis;
-  out.save_charisma = v.saves.cha;
-  const abilityFullNames = {
-    str: "strength",
-    dex: "dexterity", 
-    con: "constitution",
-    int: "intelligence",
-    wis: "wisdom",
-    cha: "charisma"
-  } as const;
-  
-  for (const a of ["str","dex","con","int","wis","cha"] as const) {
-    out[`save_${abilityFullNames[a]}_prof`] = model.proficiencies.saves.includes(a);
-  }
+  // Ability modifiers
+  out.strMod = m.str;
+  out.dexMod = m.dex;
+  out.conMod = m.con;
+  out.intMod = m.int;
+  out.wisMod = m.wis;
+  out.charMod = m.cha;
 
-  // skills (derived) + prof flags
-  const ALL_SKILLS: Skill[] = [
-    "acrobatics","animal_handling","arcana","athletics","deception","history","insight",
-    "intimidation","investigation","medicine","nature","perception","performance","persuasion",
-    "religion","sleight_of_hand","stealth","survival",
-  ];
-  for (const k of ALL_SKILLS) {
-    out[`skill_${k}`] = v.skills[k];
-    out[`${k}_prof`] = model.proficiencies.skills.includes(k);
-  }
+  // Saving throws
+  out.strSave = v.saves.str;
+  out.dexSave = v.saves.dex;
+  out.conSave = v.saves.con;
+  out.intSave = v.saves.int;
+  out.wisSave = v.saves.wis;
+  out.charSave = v.saves.cha;
 
-  // combat + misc
-  out.proficiency_bonus = v.prof_bonus;
-  out.passive_perception = v.passive_perception;
-  out.armor_class = v.combat.armor_class;
+  // Skills
+  out.acrobatics = v.skills.acrobatics;
+  out.animalHandling = v.skills.animal_handling;
+  out.arcana = v.skills.arcana;
+  out.athletics = v.skills.athletics;
+  out.deception = v.skills.deception;
+  out.history = v.skills.history;
+  out.insight = v.skills.insight;
+  out.intimidation = v.skills.intimidation;
+  out.investigation = v.skills.investigation;
+  out.medicine = v.skills.medicine;
+  out.nature = v.skills.nature;
+  out.perception = v.skills.perception;
+  out.performance = v.skills.performance;
+  out.persuasion = v.skills.persuasion;
+  out.religion = v.skills.religion;
+  out.sleightOfHand = v.skills.sleight_of_hand;
+  out.stealth = v.skills.stealth;
+  out.survival = v.skills.survival;
+
+  // Combat stats
+  out.profBonus = v.prof_bonus;
+  out.armorClass = v.combat.armor_class;
   out.initiative = v.combat.initiative;
   out.speed = v.combat.speed_ft;
-  out.hit_points_max = v.combat.hit_points_max;
-  out.hit_dice_total = v.combat.hit_dice_total;
+  out.hpMax = v.combat.hit_points_max;
+  out.hitDice = v.combat.hit_dice_total;
+  out.passPerception = v.passive_perception;
 
-  // weapons (up to 3)
+  // Attacks (up to 3)
   const w = v.combat.weapons;
-  if (w[0]) { out.weapon1_name = w[0].name; out.weapon1_attack_bonus = w[0].attack_bonus; out.weapon1_damage = w[0].damage; }
-  if (w[1]) { out.weapon2_name = w[1].name; out.weapon2_attack_bonus = w[1].attack_bonus; out.weapon2_damage = w[1].damage; }
-  if (w[2]) { out.weapon3_name = w[2].name; out.weapon3_attack_bonus = w[2].attack_bonus; out.weapon3_damage = w[2].damage; }
-
-  // spellcasting (derived from ability + level)
-  out.spellcasting_class = v.spellcasting?.class ?? "";
-  out.spellcasting_ability = v.spellcasting?.ability ?? "";
-  out.spell_save_dc = v.spellcasting?.save_dc ?? "";
-  out.spell_attack_bonus = v.spellcasting?.attack_bonus ?? "";
-
-  // cantrips (first 8)
-  (v.spells.cantrips || []).slice(0,8).forEach((name, i) => {
-    out[`cantrip_${i+1}`] = name ?? "";
-  });
-
-  // spell names grid + slots (first 13 names per level)
-  for (let L=1; L<=9; L++) {
-    const list = (v.spells.known[String(L)] || []).slice(0,13);
-    list.forEach((name, j) => out[`spell_level${L}_slot${j+1}`] = name ?? "");
-    out[`spell_slots_lvl${L}`] = v.spells.slots[String(L)] ?? 0;
+  if (w[0]) { 
+    out.attackNameOne = w[0].name; 
+    out.attackBonusOne = w[0].attack_bonus; 
+    out.attackDamageOne = w[0].damage; 
+  }
+  if (w[1]) { 
+    out.attackNameTwo = w[1].name; 
+    out.attackBonusTwo = w[1].attack_bonus; 
+    out.attackDamageTwo = w[1].damage; 
+  }
+  if (w[2]) { 
+    out.attackNameThree = w[2].name; 
+    out.attackBonusThree = w[2].attack_bonus; 
+    out.attackDamageThree = w[2].damage; 
   }
 
-  // inventory + RP
-  out.equipment = v.inventory.equipment_text ?? "";
-  out.currency_cp = v.inventory.currency.cp ?? 0;
-  out.currency_sp = v.inventory.currency.sp ?? 0;
-  out.currency_ep = v.inventory.currency.ep ?? 0;
-  out.currency_gp = v.inventory.currency.gp ?? 0;
-  out.currency_pp = v.inventory.currency.pp ?? 0;
-
+  // Roleplay fields
   const r = v.roleplay;
-  out.personality_traits = r.personality_traits ?? "";
+  out.personalityTraits = r.personality_traits ?? "";
   out.ideals = r.ideals ?? "";
   out.bonds = r.bonds ?? "";
   out.flaws = r.flaws ?? "";
-  out.feats_and_traits = r.feats_and_traits ?? "";
-  out.features_and_traits = r.features_and_traits ?? "";
-  out.proficiencies_and_languages = r.proficiencies_and_languages ?? "";
-  out.allies = r.allies ?? "";
-  out.faction_name = r.faction_name ?? "";
-  out.faction_symbol_image = r.faction_symbol_image ?? null;
-  out.backstory = r.backstory ?? "";
-  out.treasure = r.treasure ?? "";
-  out.character_image = r.character_image ?? null;
+  out.featuresTraits = formatListWithDashes(r.features_and_traits ?? []);
+  out.equipment = v.inventory.equipment_text ?? "";
+  out.proficienciesLanguages = r.proficiencies_and_languages ?? "";
+
+  // Proficiency flags for saving throws
+  out.strSaveProf = model.proficiencies.saves.includes("str");
+  out.dexSaveProf = model.proficiencies.saves.includes("dex");
+  out.conSaveProf = model.proficiencies.saves.includes("con");
+  out.intSaveProf = model.proficiencies.saves.includes("int");
+  out.wisSaveProf = model.proficiencies.saves.includes("wis");
+  out.charSaveProf = model.proficiencies.saves.includes("cha");
+
+  // Proficiency flags for skills
+  out.acrobaticsProf = model.proficiencies.skills.includes("acrobatics");
+  out.animalHandlingProf = model.proficiencies.skills.includes("animal_handling");
+  out.arcanaProf = model.proficiencies.skills.includes("arcana");
+  out.athleticsProf = model.proficiencies.skills.includes("athletics");
+  out.deceptionProf = model.proficiencies.skills.includes("deception");
+  out.historyProf = model.proficiencies.skills.includes("history");
+  out.insightProf = model.proficiencies.skills.includes("insight");
+  out.intimidationProf = model.proficiencies.skills.includes("intimidation");
+  out.investigationProf = model.proficiencies.skills.includes("investigation");
+  out.medicineProf = model.proficiencies.skills.includes("medicine");
+  out.natureProf = model.proficiencies.skills.includes("nature");
+  out.perceptionProf = model.proficiencies.skills.includes("perception");
+  out.performanceProf = model.proficiencies.skills.includes("performance");
+  out.persuasionProf = model.proficiencies.skills.includes("persuasion");
+  out.religionProf = model.proficiencies.skills.includes("religion");
+  out.sleightOfHandProf = model.proficiencies.skills.includes("sleight_of_hand");
+  out.stealthProf = model.proficiencies.skills.includes("stealth");
+  out.survivalProf = model.proficiencies.skills.includes("survival");
 
   return out;
 }
