@@ -6,12 +6,14 @@ export interface PdfFillResult {
   error?: string;
   fieldsFilled?: number;
   totalFields?: number;
+  blob?: Blob;
 }
 
 export interface PdfFillOptions {
   pdfUrl?: string;
   filename?: string;
   action?: 'download' | 'open';
+  returnBlob?: boolean;
 }
 
 /**
@@ -24,7 +26,7 @@ export async function fillCharacterSheetPdf(
   characterData: InputModel,
   options: PdfFillOptions = {}
 ): Promise<PdfFillResult> {
-  const { pdfUrl = '/charSheet.pdf', filename, action = 'download' } = options;
+  const { pdfUrl = '/charSheet.pdf', filename, action = 'download', returnBlob = false } = options;
 
   try {
     // Convert character data to PDF field mappings
@@ -104,8 +106,24 @@ export async function fillCharacterSheetPdf(
     
     console.log(`Successfully filled ${fieldsFilled} of ${Object.keys(pdfFields).length}`);
 
+    // Flatten the form to make it non-editable and reduce file size
+    console.log('🔧 Flattening PDF form fields...');
+    form.flatten();
+    console.log('✅ PDF form fields flattened successfully');
+
     const pdfBytes = await pdfDoc.save();
     const blob = new Blob([new Uint8Array(pdfBytes)], { type: 'application/pdf' });
+    
+    if (returnBlob) {
+      // Return blob for batch processing
+      return {
+        success: true,
+        fieldsFilled,
+        totalFields: Object.keys(pdfFields).length,
+        blob
+      };
+    }
+    
     const url = URL.createObjectURL(blob);
     
     if (action === 'open') {
