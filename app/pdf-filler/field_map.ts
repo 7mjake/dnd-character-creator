@@ -34,6 +34,8 @@ export interface InputModel {
     armor_base_ac?: number | null; // optional override (e.g., chain mail 16 + shield)
     initiative_misc?: number | null; // misc init bonus (e.g. Alert feat)
     speed_ft: number;
+    hit_points_max?: number | null; // max HP (if not provided, will be calculated)
+    hit_dice_total?: string | null; // e.g., "3d10" (if not provided, will be calculated)
     weapons: Array<{
       name: string;
       ability: Ability;     // which ability to use for the attack roll
@@ -86,6 +88,44 @@ export function profBonus(level: number) {
   return Math.floor((level - 1) / 4) + 2;
 }
 
+// Hit dice by class (D&D 5e standard)
+const HIT_DICE_BY_CLASS: Record<string, number> = {
+  "barbarian": 12,
+  "fighter": 10,
+  "paladin": 10,
+  "ranger": 10,
+  "artificer": 8,
+  "bard": 8,
+  "cleric": 8,
+  "druid": 8,
+  "monk": 8,
+  "rogue": 8,
+  "warlock": 8,
+  "sorcerer": 6,
+  "wizard": 6,
+};
+
+export function calculateHitPoints(className: string, level: number, conMod: number, override?: number | null): number {
+  if (override !== null && override !== undefined) {
+    return override;
+  }
+  
+  const hitDie = HIT_DICE_BY_CLASS[className.toLowerCase()] || 8; // default to d8
+  // Level 1: full hit die + con mod, subsequent levels: average of hit die + con mod
+  const level1HP = hitDie + conMod;
+  const subsequentLevels = (level - 1) * (Math.floor(hitDie / 2) + 1 + conMod);
+  return level1HP + subsequentLevels;
+}
+
+export function calculateHitDice(className: string, level: number, override?: string | null): string {
+  if (override) {
+    return override;
+  }
+  
+  const hitDie = HIT_DICE_BY_CLASS[className.toLowerCase()] || 8; // default to d8
+  return `${level}d${hitDie}`;
+}
+
 // ---------- Compute: derive all values from minimal inputs ----------
 export function computeDerived(model: InputModel) {
   const pb = profBonus(model.identity.level);
@@ -115,6 +155,19 @@ export function computeDerived(model: InputModel) {
   const initiative = mods.dex + (model.combat.initiative_misc ?? 0);
   // Simple fallback AC: 10 + Dex mod (you can replace with richer armor logic)
   const armorClass = model.combat.armor_base_ac ?? (10 + mods.dex);
+  
+  // Calculate hit points and hit dice
+  const hitPointsMax = calculateHitPoints(
+    model.identity.class, 
+    model.identity.level, 
+    mods.con, 
+    model.combat.hit_points_max
+  );
+  const hitDiceTotal = calculateHitDice(
+    model.identity.class, 
+    model.identity.level, 
+    model.combat.hit_dice_total
+  );
 
   const weapons = (model.combat.weapons || []).map(w => ({
     ...w,
@@ -148,6 +201,8 @@ export function computeDerived(model: InputModel) {
       armor_class: armorClass,
       initiative,
       speed_ft: model.combat.speed_ft,
+      hit_points_max: hitPointsMax,
+      hit_dice_total: hitDiceTotal,
       weapons,
     },
     spellcasting: spell,
@@ -197,8 +252,17 @@ export function toPdfFields(model: InputModel): PdfFields {
   out.save_intelligence = v.saves.int;
   out.save_wisdom = v.saves.wis;
   out.save_charisma = v.saves.cha;
+  const abilityFullNames = {
+    str: "strength",
+    dex: "dexterity", 
+    con: "constitution",
+    int: "intelligence",
+    wis: "wisdom",
+    cha: "charisma"
+  } as const;
+  
   for (const a of ["str","dex","con","int","wis","cha"] as const) {
-    out[`save_${a}_prof`] = model.proficiencies.saves.includes(a);
+    out[`save_${abilityFullNames[a]}_prof`] = model.proficiencies.saves.includes(a);
   }
 
   // skills (derived) + prof flags
@@ -218,6 +282,8 @@ export function toPdfFields(model: InputModel): PdfFields {
   out.armor_class = v.combat.armor_class;
   out.initiative = v.combat.initiative;
   out.speed = v.combat.speed_ft;
+  out.hit_points_max = v.combat.hit_points_max;
+  out.hit_dice_total = v.combat.hit_dice_total;
 
   // weapons (up to 3)
   const w = v.combat.weapons;
