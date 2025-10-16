@@ -146,7 +146,7 @@ const CharacterSheetFiller: React.FC = () => {
   };
 
 
-  const fillPDFForm = async () => {
+  const fillPDFForm = async (action: 'download' | 'open' = 'download') => {
     if (!characterData) {
       setError('No character data loaded');
       return;
@@ -156,7 +156,7 @@ const CharacterSheetFiller: React.FC = () => {
     setError(null);
 
     try {
-      const result = await fillCharacterSheetPdf(characterData);
+      const result = await fillCharacterSheetPdf(characterData, { action });
       
       if (result.success) {
         console.log(`Successfully filled ${result.fieldsFilled} fields out of ${result.totalFields} available fields`);
@@ -273,13 +273,21 @@ const CharacterSheetFiller: React.FC = () => {
               </div>
             )}
 
-            <div className="mt-6">
+            <div className="mt-6 space-y-3">
               <button
-                onClick={fillPDFForm}
+                onClick={() => fillPDFForm('download')}
                 disabled={!characterData || isLoading}
                 className="w-full px-6 py-3 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed font-semibold"
               >
-                {isLoading ? 'Generating PDF...' : 'Generate & Download PDF'}
+                {isLoading ? 'Generating PDF...' : '📥 Download PDF'}
+              </button>
+              
+              <button
+                onClick={() => fillPDFForm('open')}
+                disabled={!characterData || isLoading}
+                className="w-full px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed font-semibold"
+              >
+                {isLoading ? 'Generating PDF...' : '🔗 Open PDF in New Tab'}
               </button>
             </div>
           </div>

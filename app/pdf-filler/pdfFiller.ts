@@ -11,10 +11,11 @@ export interface PdfFillResult {
 export interface PdfFillOptions {
   pdfUrl?: string;
   filename?: string;
+  action?: 'download' | 'open';
 }
 
 /**
- * Fills a PDF form with character data and triggers download
+ * Fills a PDF form with character data and triggers download or opens in new tab
  * @param characterData - The character data to fill into the PDF
  * @param options - Configuration options for PDF filling
  * @returns Promise that resolves with fill result information
@@ -23,7 +24,7 @@ export async function fillCharacterSheetPdf(
   characterData: InputModel,
   options: PdfFillOptions = {}
 ): Promise<PdfFillResult> {
-  const { pdfUrl = '/charSheet.pdf', filename } = options;
+  const { pdfUrl = '/charSheet.pdf', filename, action = 'download' } = options;
 
   try {
     // Convert character data to PDF field mappings
@@ -57,27 +58,45 @@ export async function fillCharacterSheetPdf(
         const field = form.getField(fieldName);
         if (!field) continue;
 
-        // text fields
-        // (no setFont, no updateAppearances — keep the author's size)
-        if ('setText' in field) {
-          console.log(`📝 Setting text field "${fieldName}" = "${value}" (preserving original size)`);
-          (field as any).setText(value == null ? '' : String(value));
+        // Handle different field types using proper PDF-lib methods
+        if (field.constructor.name === 'PDFTextField') {
+          console.log(`📝 Setting text field "${fieldName}" = "${value}"`);
+          const textField = field as any;
+          
+          // Set text without modifying font to preserve original styling
+          textField.setText(value == null ? '' : String(value));
           fieldsFilled++;
           continue;
         }
 
-        // checkboxes
-        if ('check' in field && typeof value === 'boolean') {
-          value ? (field as any).check() : (field as any).uncheck();
+        if (field.constructor.name === 'PDFCheckBox') {
+          console.log(`☑️ Setting checkbox "${fieldName}" = ${value}`);
+          const checkBox = field as any;
+          if (typeof value === 'boolean') {
+            value ? checkBox.check() : checkBox.uncheck();
+            fieldsFilled++;
+          }
+          continue;
+        }
+
+        if (field.constructor.name === 'PDFDropdown') {
+          console.log(`📋 Setting dropdown "${fieldName}" = "${value}"`);
+          const dropdown = field as any;
+          dropdown.select(String(value));
           fieldsFilled++;
           continue;
         }
 
-        // other types (dropdowns etc.)
-        if ('setValue' in field) {
-          (field as any).setValue(value);
+        if (field.constructor.name === 'PDFRadioGroup') {
+          console.log(`🔘 Setting radio group "${fieldName}" = "${value}"`);
+          const radioGroup = field as any;
+          radioGroup.select(String(value));
           fieldsFilled++;
+          continue;
         }
+
+        // Fallback for other field types
+        console.log(`⚠️ Unknown field type "${field.constructor.name}" for field "${fieldName}"`);
       } catch (e) {
         console.log(`Could not set field ${fieldName}:`, e);
       }
@@ -88,13 +107,31 @@ export async function fillCharacterSheetPdf(
     const pdfBytes = await pdfDoc.save();
     const blob = new Blob([new Uint8Array(pdfBytes)], { type: 'application/pdf' });
     const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = filename || `${characterData.identity.name.replace(/\s+/g, '_')}_Character_Sheet.pdf`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    URL.revokeObjectURL(url);
+    
+    if (action === 'open') {
+      // Open PDF in new tab
+      const newWindow = window.open(url, '_blank');
+      if (!newWindow) {
+        // Fallback to download if popup is blocked
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = filename || `${characterData.identity.name.replace(/\s+/g, '_')}_Character_Sheet.pdf`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
+    } else {
+      // Download PDF
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = filename || `${characterData.identity.name.replace(/\s+/g, '_')}_Character_Sheet.pdf`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+    
+    // Clean up the object URL after a short delay to allow the action to complete
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
 
     return {
       success: true,
@@ -144,3 +181,4 @@ export function validateCharacterData(data: any): { valid: boolean; error?: stri
     };
   }
 }
+

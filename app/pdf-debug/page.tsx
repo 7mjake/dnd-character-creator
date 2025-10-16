@@ -13,6 +13,12 @@ interface FieldInfo {
   options?: string[];
   maxLength?: number;
   flags?: number;
+  fontSize?: number;
+  fontName?: string;
+  textColor?: string;
+  backgroundColor?: string;
+  borderColor?: string;
+  fieldRect?: { x: number; y: number; width: number; height: number };
 }
 
 const PDFDebugPage: React.FC = () => {
@@ -135,6 +141,59 @@ const PDFDebugPage: React.FC = () => {
             }
           } catch (e) {
             // Flags not available or error reading
+          }
+
+          // Try to get font and appearance information
+          try {
+            const fieldDict = (field as any).acroField?.dict;
+            if (fieldDict && 'get' in fieldDict) {
+              // Get font information
+              const da = fieldDict.get('DA'); // Default appearance
+              if (da) {
+                console.log(`   Default Appearance: ${da}`);
+                // Parse font size from appearance string (e.g., "/Helv 9 Tf" means Helvetica 9pt)
+                const fontMatch = da.match(/\/(\w+)\s+(\d+(?:\.\d+)?)\s+Tf/);
+                if (fontMatch) {
+                  fieldInfo.fontName = fontMatch[1];
+                  fieldInfo.fontSize = parseFloat(fontMatch[2]);
+                  console.log(`   Font: ${fieldInfo.fontName} ${fieldInfo.fontSize}pt`);
+                }
+              }
+
+              // Get field rectangle (position and size)
+              const rect = fieldDict.get('Rect');
+              if (rect && rect.length === 4) {
+                fieldInfo.fieldRect = {
+                  x: rect[0],
+                  y: rect[1], 
+                  width: rect[2] - rect[0],
+                  height: rect[3] - rect[1]
+                };
+                console.log(`   Field Rect: ${fieldInfo.fieldRect.width.toFixed(1)}x${fieldInfo.fieldRect.height.toFixed(1)} at (${fieldInfo.fieldRect.x.toFixed(1)}, ${fieldInfo.fieldRect.y.toFixed(1)})`);
+              }
+
+              // Get border and background colors
+              const borderColor = fieldDict.get('BC');
+              if (borderColor) {
+                fieldInfo.borderColor = borderColor.toString();
+                console.log(`   Border Color: ${fieldInfo.borderColor}`);
+              }
+
+              const backgroundColor = fieldDict.get('BG');
+              if (backgroundColor) {
+                fieldInfo.backgroundColor = backgroundColor.toString();
+                console.log(`   Background Color: ${fieldInfo.backgroundColor}`);
+              }
+
+              // Check for text color in appearance
+              const textColorMatch = da?.match(/rg\s+([\d.]+)\s+([\d.]+)\s+([\d.]+)/);
+              if (textColorMatch) {
+                fieldInfo.textColor = `rgb(${textColorMatch[1]}, ${textColorMatch[2]}, ${textColorMatch[3]})`;
+                console.log(`   Text Color: ${fieldInfo.textColor}`);
+              }
+            }
+          } catch (e) {
+            console.log(`   Appearance: Error reading - ${e}`);
           }
           
           fieldDetails.push(fieldInfo);
@@ -344,6 +403,37 @@ const PDFDebugPage: React.FC = () => {
               </div>
             </div>
 
+            {/* Font Size Analysis */}
+            <div className="mb-6">
+              <h3 className="text-lg font-semibold mb-3 text-gray-800">Font Size Analysis</h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="bg-red-50 p-4 rounded-lg">
+                  <div className="text-lg font-bold text-red-600">
+                    {fieldInfo.filter(f => f.fontSize && f.fontSize > 12).length}
+                  </div>
+                  <div className="text-sm text-red-800">Large Fonts (&gt;12pt)</div>
+                  <div className="text-xs text-red-600 mt-1">
+                    {fieldInfo.filter(f => f.fontSize && f.fontSize > 12).map(f => f.name).join(', ')}
+                  </div>
+                </div>
+                <div className="bg-yellow-50 p-4 rounded-lg">
+                  <div className="text-lg font-bold text-yellow-600">
+                    {fieldInfo.filter(f => f.fontSize && f.fontSize < 8).length}
+                  </div>
+                  <div className="text-sm text-yellow-800">Small Fonts (&lt;8pt)</div>
+                  <div className="text-xs text-yellow-600 mt-1">
+                    {fieldInfo.filter(f => f.fontSize && f.fontSize < 8).map(f => f.name).join(', ')}
+                  </div>
+                </div>
+                <div className="bg-green-50 p-4 rounded-lg">
+                  <div className="text-lg font-bold text-green-600">
+                    {fieldInfo.filter(f => f.fontSize && f.fontSize >= 8 && f.fontSize <= 12).length}
+                  </div>
+                  <div className="text-sm text-green-800">Normal Fonts (8-12pt)</div>
+                </div>
+              </div>
+            </div>
+
             {/* Detailed Field List */}
             <div className="mb-6">
               <h3 className="text-lg font-semibold mb-3 text-gray-800">All Fields ({fieldInfo.length})</h3>
@@ -355,6 +445,8 @@ const PDFDebugPage: React.FC = () => {
                       <th className="px-3 py-2 text-left font-medium text-gray-700">Field Name</th>
                       <th className="px-3 py-2 text-left font-medium text-gray-700">Type</th>
                       <th className="px-3 py-2 text-left font-medium text-gray-700">Value</th>
+                      <th className="px-3 py-2 text-left font-medium text-gray-700">Font</th>
+                      <th className="px-3 py-2 text-left font-medium text-gray-700">Size</th>
                       <th className="px-3 py-2 text-left font-medium text-gray-700">Properties</th>
                     </tr>
                   </thead>
@@ -367,12 +459,27 @@ const PDFDebugPage: React.FC = () => {
                         <td className="px-3 py-2 text-gray-700 max-w-xs truncate">
                           {field.value !== undefined ? String(field.value) : '-'}
                         </td>
+                        <td className="px-3 py-2 text-gray-700">
+                          {field.fontName || '-'}
+                        </td>
+                        <td className="px-3 py-2 text-gray-700">
+                          {field.fontSize ? (
+                            <span className={`px-1 py-0.5 text-xs rounded ${
+                              field.fontSize > 12 ? 'bg-red-100 text-red-800' :
+                              field.fontSize < 8 ? 'bg-yellow-100 text-yellow-800' :
+                              'bg-green-100 text-green-800'
+                            }`}>
+                              {field.fontSize}pt
+                            </span>
+                          ) : '-'}
+                        </td>
                         <td className="px-3 py-2 text-gray-600">
                           <div className="flex flex-wrap gap-1">
                             {field.isReadOnly && <span className="px-1 py-0.5 bg-yellow-100 text-yellow-800 text-xs rounded">RO</span>}
                             {field.isRequired && <span className="px-1 py-0.5 bg-red-100 text-red-800 text-xs rounded">Req</span>}
                             {field.maxLength && <span className="px-1 py-0.5 bg-blue-100 text-blue-800 text-xs rounded">Max:{field.maxLength}</span>}
                             {field.options && <span className="px-1 py-0.5 bg-green-100 text-green-800 text-xs rounded">Opt:{field.options.length}</span>}
+                            {field.fieldRect && <span className="px-1 py-0.5 bg-purple-100 text-purple-800 text-xs rounded">{Math.round(field.fieldRect.width)}x{Math.round(field.fieldRect.height)}</span>}
                           </div>
                         </td>
                       </tr>
