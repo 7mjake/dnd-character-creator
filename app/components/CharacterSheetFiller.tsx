@@ -1,129 +1,9 @@
 'use client';
 
 import React, { useState, useRef } from 'react';
-import { PDFDocument, StandardFonts, PDFName, PDFString } from 'pdf-lib';
 import { InputModel, toPdfFields } from '../pdf-filler/field_map';
+import { fillCharacterSheetPdf, validateCharacterData } from '../pdf-filler/pdfFiller';
 
-// Field styling configuration with default text sizes
-const FIELD_STYLES: Record<string, { size: number; align: number }> = {
-  // Character identity - larger text for important info
-  'character_name': { size: 14, align: 0 }, // left-aligned, 14pt
-  'class_and_level': { size: 12, align: 0 }, // left-aligned, 12pt
-  'race': { size: 12, align: 0 }, // left-aligned, 12pt
-  'background': { size: 12, align: 0 }, // left-aligned, 12pt
-  'alignment': { size: 12, align: 0 }, // left-aligned, 12pt
-  
-  // Physical characteristics - smaller text
-  'age': { size: 10, align: 0 }, // left-aligned, 10pt
-  'height': { size: 10, align: 0 }, // left-aligned, 10pt
-  'weight': { size: 10, align: 0 }, // left-aligned, 10pt
-  'eyes': { size: 10, align: 0 }, // left-aligned, 10pt
-  'skin': { size: 10, align: 0 }, // left-aligned, 10pt
-  'hair': { size: 10, align: 0 }, // left-aligned, 10pt
-  
-  // Ability scores - center-aligned, standard size
-  'strength': { size: 12, align: 1 }, // center-aligned, 12pt
-  'dexterity': { size: 12, align: 1 }, // center-aligned, 12pt
-  'constitution': { size: 12, align: 1 }, // center-aligned, 12pt
-  'intelligence': { size: 12, align: 1 }, // center-aligned, 12pt
-  'wisdom': { size: 12, align: 1 }, // center-aligned, 12pt
-  'charisma': { size: 12, align: 1 }, // center-aligned, 12pt
-  
-  // Ability modifiers - center-aligned, standard size
-  'strength_mod': { size: 12, align: 1 }, // center-aligned, 12pt
-  'dexterity_mod': { size: 12, align: 1 }, // center-aligned, 12pt
-  'constitution_mod': { size: 12, align: 1 }, // center-aligned, 12pt
-  'intelligence_mod': { size: 12, align: 1 }, // center-aligned, 12pt
-  'wisdom_mod': { size: 12, align: 1 }, // center-aligned, 12pt
-  'charisma_mod': { size: 12, align: 1 }, // center-aligned, 12pt
-  
-  // Saving throws - center-aligned, standard size
-  'save_strength': { size: 12, align: 1 }, // center-aligned, 12pt
-  'save_dexterity': { size: 12, align: 1 }, // center-aligned, 12pt
-  'save_constitution': { size: 12, align: 1 }, // center-aligned, 12pt
-  'save_intelligence': { size: 12, align: 1 }, // center-aligned, 12pt
-  'save_wisdom': { size: 12, align: 1 }, // center-aligned, 12pt
-  'save_charisma': { size: 12, align: 1 }, // center-aligned, 12pt
-  
-  // Skills - smaller text for compact display
-  'skill_acrobatics': { size: 10, align: 1 }, // center-aligned, 10pt
-  'skill_animal_handling': { size: 10, align: 1 }, // center-aligned, 10pt
-  'skill_arcana': { size: 10, align: 1 }, // center-aligned, 10pt
-  'skill_athletics': { size: 10, align: 1 }, // center-aligned, 10pt
-  'skill_deception': { size: 10, align: 1 }, // center-aligned, 10pt
-  'skill_history': { size: 10, align: 1 }, // center-aligned, 10pt
-  'skill_insight': { size: 10, align: 1 }, // center-aligned, 10pt
-  'skill_intimidation': { size: 10, align: 1 }, // center-aligned, 10pt
-  'skill_investigation': { size: 10, align: 1 }, // center-aligned, 10pt
-  'skill_medicine': { size: 10, align: 1 }, // center-aligned, 10pt
-  'skill_nature': { size: 10, align: 1 }, // center-aligned, 10pt
-  'skill_perception': { size: 10, align: 1 }, // center-aligned, 10pt
-  'skill_performance': { size: 10, align: 1 }, // center-aligned, 10pt
-  'skill_persuasion': { size: 10, align: 1 }, // center-aligned, 10pt
-  'skill_religion': { size: 10, align: 1 }, // center-aligned, 10pt
-  'skill_sleight_of_hand': { size: 10, align: 1 }, // center-aligned, 10pt
-  'skill_stealth': { size: 10, align: 1 }, // center-aligned, 10pt
-  'skill_survival': { size: 10, align: 1 }, // center-aligned, 10pt
-  
-  // Combat stats - center-aligned, standard size
-  'proficiency_bonus': { size: 12, align: 1 }, // center-aligned, 12pt
-  'passive_perception': { size: 12, align: 1 }, // center-aligned, 12pt
-  'armor_class': { size: 12, align: 1 }, // center-aligned, 12pt
-  'initiative': { size: 12, align: 1 }, // center-aligned, 12pt
-  'speed': { size: 12, align: 1 }, // center-aligned, 12pt
-  'hit_points_max': { size: 12, align: 1 }, // center-aligned, 12pt
-  'hit_dice_total': { size: 12, align: 1 }, // center-aligned, 12pt
-  
-  // Weapons - smaller text for compact display
-  'weapon1_name': { size: 10, align: 0 }, // left-aligned, 10pt
-  'weapon1_attack_bonus': { size: 10, align: 1 }, // center-aligned, 10pt
-  'weapon1_damage': { size: 10, align: 0 }, // left-aligned, 10pt
-  'weapon2_name': { size: 10, align: 0 }, // left-aligned, 10pt
-  'weapon2_attack_bonus': { size: 10, align: 1 }, // center-aligned, 10pt
-  'weapon2_damage': { size: 10, align: 0 }, // left-aligned, 10pt
-  'weapon3_name': { size: 10, align: 0 }, // left-aligned, 10pt
-  'weapon3_attack_bonus': { size: 10, align: 1 }, // center-aligned, 10pt
-  'weapon3_damage': { size: 10, align: 0 }, // left-aligned, 10pt
-  
-  // Spellcasting - smaller text for compact display
-  'spellcasting_class': { size: 10, align: 0 }, // left-aligned, 10pt
-  'spellcasting_ability': { size: 10, align: 0 }, // left-aligned, 10pt
-  'spell_save_dc': { size: 10, align: 1 }, // center-aligned, 10pt
-  'spell_attack_bonus': { size: 10, align: 1 }, // center-aligned, 10pt
-  
-  // Cantrips and spells - smaller text
-  'cantrip_1': { size: 9, align: 0 }, // left-aligned, 9pt
-  'cantrip_2': { size: 9, align: 0 }, // left-aligned, 9pt
-  'cantrip_3': { size: 9, align: 0 }, // left-aligned, 9pt
-  'cantrip_4': { size: 9, align: 0 }, // left-aligned, 9pt
-  'cantrip_5': { size: 9, align: 0 }, // left-aligned, 9pt
-  'cantrip_6': { size: 9, align: 0 }, // left-aligned, 9pt
-  'cantrip_7': { size: 9, align: 0 }, // left-aligned, 9pt
-  'cantrip_8': { size: 9, align: 0 }, // left-aligned, 9pt
-  
-  // Equipment and inventory - smaller text for long content
-  'equipment': { size: 9, align: 0 }, // left-aligned, 9pt
-  
-  // Currency - center-aligned, small text
-  'currency_cp': { size: 10, align: 1 }, // center-aligned, 10pt
-  'currency_sp': { size: 10, align: 1 }, // center-aligned, 10pt
-  'currency_ep': { size: 10, align: 1 }, // center-aligned, 10pt
-  'currency_gp': { size: 10, align: 1 }, // center-aligned, 10pt
-  'currency_pp': { size: 10, align: 1 }, // center-aligned, 10pt
-  
-  // Roleplay fields - smaller text for long content
-  'personality_traits': { size: 9, align: 0 }, // left-aligned, 9pt
-  'ideals': { size: 9, align: 0 }, // left-aligned, 9pt
-  'bonds': { size: 9, align: 0 }, // left-aligned, 9pt
-  'flaws': { size: 9, align: 0 }, // left-aligned, 9pt
-  'feats_and_traits': { size: 9, align: 0 }, // left-aligned, 9pt
-  'features_and_traits': { size: 9, align: 0 }, // left-aligned, 9pt
-  'proficiencies_and_languages': { size: 9, align: 0 }, // left-aligned, 9pt
-  'allies': { size: 9, align: 0 }, // left-aligned, 9pt
-  'faction_name': { size: 10, align: 0 }, // left-aligned, 10pt
-  'backstory': { size: 9, align: 0 }, // left-aligned, 9pt
-  'treasure': { size: 9, align: 0 }, // left-aligned, 9pt
-};
 
 const CharacterSheetFiller: React.FC = () => {
   const [jsonInput, setJsonInput] = useState('');
@@ -136,18 +16,11 @@ const CharacterSheetFiller: React.FC = () => {
   const validateAndParseJson = (jsonString: string): InputModel | null => {
     try {
       const parsed = JSON.parse(jsonString);
+      const validation = validateCharacterData(parsed);
       
-      // Basic validation for required fields
-      if (!parsed.identity?.name || !parsed.identity?.class || !parsed.abilities) {
-        throw new Error('Invalid character data: missing required fields (identity.name, identity.class, abilities)');
-      }
-      
-      // Validate abilities object
-      const requiredAbilities = ['str', 'dex', 'con', 'int', 'wis', 'cha'];
-      for (const ability of requiredAbilities) {
-        if (typeof parsed.abilities[ability] !== 'number') {
-          throw new Error(`Invalid character data: missing or invalid ability score for ${ability}`);
-        }
+      if (!validation.valid) {
+        setError(validation.error || 'Invalid character data');
+        return null;
       }
       
       return parsed as InputModel;
@@ -272,48 +145,9 @@ const CharacterSheetFiller: React.FC = () => {
     }
   };
 
-  // Function to apply field styling
-  const applyFieldStyling = async (pdfDoc: PDFDocument, form: any) => {
-    try {
-      // Embed Helvetica font for styling
-      const helveticaFont = await pdfDoc.embedFont(StandardFonts.Helvetica);
-      
-      let styledFields = 0;
-      
-      // Apply styling to each field that has a style configuration
-      for (const [fieldName, style] of Object.entries(FIELD_STYLES)) {
-        try {
-          const field = form.getTextField(fieldName);
-          if (field) {
-            // Set text alignment (Q = quadding/justification)
-            // 0 = left, 1 = center, 2 = right
-            field.acroField.dict.set(PDFName.of('Q'), pdfDoc.context.obj(style.align));
-            
-            // Set default appearance with custom font size
-            // Format: /FontName Size Tf Color
-            // /Helv = Helvetica, Size = font size, Tf = text font, 0 g = black color
-            field.acroField.dict.set(PDFName.of('DA'), PDFString.of(`/Helv ${style.size} Tf 0 g`));
-            
-            // Rebuild the field's appearance with our embedded font
-            field.updateAppearances(helveticaFont);
-            
-            styledFields++;
-          }
-        } catch (e) {
-          // Field doesn't exist or can't be styled, continue
-          console.log(`Could not style field ${fieldName}:`, e);
-        }
-      }
-      
-      console.log(`Successfully styled ${styledFields} fields out of ${Object.keys(FIELD_STYLES).length} configured styles`);
-      
-    } catch (err) {
-      console.error('Error applying field styling:', err);
-    }
-  };
 
   const fillPDFForm = async () => {
-    if (!characterData || !pdfFields) {
+    if (!characterData) {
       setError('No character data loaded');
       return;
     }
@@ -322,68 +156,13 @@ const CharacterSheetFiller: React.FC = () => {
     setError(null);
 
     try {
-      // Load the existing D&D 5E Character Sheet PDF
-      const response = await fetch('/charSheet.pdf');
-      if (!response.ok) {
-        throw new Error('Failed to load PDF template');
+      const result = await fillCharacterSheetPdf(characterData);
+      
+      if (result.success) {
+        console.log(`Successfully filled ${result.fieldsFilled} fields out of ${result.totalFields} available fields`);
+      } else {
+        setError(result.error || 'Failed to generate PDF');
       }
-      const existingPdfBytes = await response.arrayBuffer();
-      
-      // Load the PDF document
-      const pdfDoc = await PDFDocument.load(existingPdfBytes);
-      const form = pdfDoc.getForm();
-      
-      // Get all form fields to see what's available
-      const fieldNames = form.getFields().map(field => field.getName());
-      console.log('Available PDF fields:', fieldNames);
-      
-      // Fill form fields using the mapped field names
-      let fieldsFilled = 0;
-      for (const [fieldName, value] of Object.entries(pdfFields)) {
-        try {
-          const field = form.getField(fieldName);
-          if (field) {
-            // Handle different field types
-            if ('setText' in field) {
-              (field as any).setText(String(value));
-              fieldsFilled++;
-            } else if ('setValue' in field) {
-              (field as any).setValue(value);
-              fieldsFilled++;
-            } else if ('check' in field && typeof value === 'boolean') {
-              if (value) {
-                (field as any).check();
-              } else {
-                (field as any).uncheck();
-              }
-              fieldsFilled++;
-            }
-          }
-        } catch (e) {
-          // Field doesn't exist or can't be set, continue
-          console.log(`Could not set field ${fieldName}:`, e);
-        }
-      }
-      
-      console.log(`Successfully filled ${fieldsFilled} fields out of ${Object.keys(pdfFields).length} available fields`);
-
-      // Apply field styling after filling the fields
-      await applyFieldStyling(pdfDoc, form);
-
-      // Generate PDF bytes
-      const pdfBytes = await pdfDoc.save();
-
-      // Create download link
-      const blob = new Blob([new Uint8Array(pdfBytes)], { type: 'application/pdf' });
-      const url = URL.createObjectURL(blob);
-      const link = document.createElement('a');
-      link.href = url;
-      link.download = `${characterData.identity.name.replace(/\s+/g, '_')}_Character_Sheet.pdf`;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      URL.revokeObjectURL(url);
-
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to generate PDF');
     } finally {
