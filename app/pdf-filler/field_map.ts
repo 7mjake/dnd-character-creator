@@ -301,7 +301,7 @@ export function toPdfFields(model: InputModel): PdfFields {
   out.profBonus = v.prof_bonus >= 0 ? `+${v.prof_bonus}` : `${v.prof_bonus}`;
   out.armorClass = v.combat.armor_class;
   out.initiative = v.combat.initiative >= 0 ? `+${v.combat.initiative}` : `${v.combat.initiative}`;
-  out.speed = v.combat.speed_ft;
+  out.speed = `${v.combat.speed_ft}ft`;
   out.hpMax = v.combat.hit_points_max;
   out.hitDice = v.combat.hit_dice_total;
   out.passPerception = v.passive_perception;
@@ -350,7 +350,7 @@ export function toPdfFields(model: InputModel): PdfFields {
   // Spellcasting fields
   if (v.spellcasting) {
     out.spellcastingClass = v.spellcasting.class ?? "";
-    out.spellcastingAbility = v.spellcasting.ability ?? "";
+    out.spellcastingAbility = v.spellcasting.ability ? v.spellcasting.ability.charAt(0).toUpperCase() + v.spellcasting.ability.slice(1) : "";
     out.spellSaveDC = v.spellcasting.save_dc;
     out.spellAttackBonus = v.spellcasting.attack_bonus >= 0 ? `+${v.spellcasting.attack_bonus}` : `${v.spellcasting.attack_bonus}`;
   } else {

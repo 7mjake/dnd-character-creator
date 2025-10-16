@@ -73,6 +73,7 @@
           "faction_name": "The Stoneguard",
           "faction_symbol_image": null,
           "backstory": "A veteran soldier who served in the Stoneguard Regiment, defending the mountain passes from orc raids.",
+          "character_appearance": "Thorin stands at a typical dwarven height with a broad, muscular build that speaks to years of military training. His black beard is braided with small metal rings and reaches his chest, while his brown eyes hold the steady gaze of a seasoned warrior. Scars crisscross his pale skin, each one telling a story of battles fought. He carries himself with the disciplined posture of a soldier, and his hands are calloused from years of wielding weapons and working with metal.",
           "treasure": "A family heirloom warhammer passed down through generations.",
           "character_image": null
         }
@@ -186,6 +187,7 @@
           "faction_name": "The Arcane University",
           "faction_symbol_image": null,
           "backstory": "A brilliant young wizard who left the Arcane University to seek ancient knowledge and magical artifacts in the wider world.",
+          "character_appearance": "Elara possesses the ethereal beauty typical of her elven heritage, with silver hair that seems to shimmer with starlight and pale skin that glows softly in moonlight. Her silver eyes hold an otherworldly intelligence, and she moves with the graceful precision of one who has spent years in study and meditation. She often wears robes adorned with celestial patterns, and her fingers are stained with various inks from her constant note-taking. Small magical trinkets and crystals dangle from her belt, and she carries herself with the quiet confidence of someone who knows the true power of knowledge.",
           "treasure": "A mysterious crystal orb that seems to contain swirling starlight.",
           "character_image": null
         }
@@ -272,6 +274,7 @@
           "faction_name": "The Shadow Thieves",
           "faction_symbol_image": null,
           "backstory": "A former member of a notorious thieves' guild who turned to adventuring to escape their past and make amends.",
+          "character_appearance": "Shadow is small even for a halfling, with a wiry build that allows for quick, silent movement. Their brown hair is kept short and practical, and their green eyes constantly scan their surroundings with the alertness of someone who has learned to trust no one. Tan skin bears the faint scars of past encounters, and they move with the fluid grace of a natural acrobat. They prefer dark, form-fitting clothing that doesn't impede movement, and their hands are quick and dexterous. There's always a slight smile playing at their lips, as if they know something others don't.",
           "treasure": "A mysterious key that opens a lockbox hidden somewhere in the city.",
           "character_image": null
         }

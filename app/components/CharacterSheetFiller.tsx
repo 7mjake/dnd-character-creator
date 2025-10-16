@@ -319,6 +319,29 @@ const CharacterSheetFiller: React.FC = () => {
                   </div>
                 )}
 
+                {characterData.spellcasting && (
+                  <div>
+                    <h3 className="font-semibold text-gray-800">Spellcasting</h3>
+                    <div className="text-sm text-gray-600 space-y-1">
+                      <p><strong>Class:</strong> {characterData.spellcasting.class}</p>
+                      <p><strong>Spellcasting Ability:</strong> {characterData.spellcasting.ability ? characterData.spellcasting.ability.charAt(0).toUpperCase() + characterData.spellcasting.ability.slice(1) : ''}</p>
+                      {characterData.spellcasting.cantrips && characterData.spellcasting.cantrips.length > 0 && (
+                        <p><strong>Cantrips:</strong> {characterData.spellcasting.cantrips.join(', ')}</p>
+                      )}
+                      {characterData.spellcasting.spells_known && Object.keys(characterData.spellcasting.spells_known).length > 0 && (
+                        <div>
+                          <strong>Spells Known:</strong>
+                          {Object.entries(characterData.spellcasting.spells_known).map(([level, spells]) => (
+                            <p key={level} className="ml-4">
+                              Level {level}: {Array.isArray(spells) ? spells.join(', ') : ''}
+                            </p>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )}
+
                 {pdfFields && (
                   <div className="mt-4 p-3 bg-gray-50 rounded">
                     <h3 className="font-semibold text-gray-800 mb-2">PDF Fields Generated</h3>
