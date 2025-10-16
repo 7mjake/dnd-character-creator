@@ -60,20 +60,18 @@ export async function fillCharacterSheetPdf(
         const field = form.getField(fieldName);
         if (!field) continue;
 
-        // Handle different field types using method detection instead of constructor.name
-        // This avoids issues with minified constructor names in production builds
-        
-        // Check for text fields (has setText method)
-        if (typeof (field as any).setText === 'function') {
+        // Handle different field types using proper PDF-lib methods
+        if (field.constructor.name === 'PDFTextField') {
           console.log(`📝 Setting text field "${fieldName}" = "${value}"`);
           const textField = field as any;
+          
+          // Set text without modifying font to preserve original styling
           textField.setText(value == null ? '' : String(value));
           fieldsFilled++;
           continue;
         }
 
-        // Check for checkboxes (has check and uncheck methods)
-        if (typeof (field as any).check === 'function' && typeof (field as any).uncheck === 'function') {
+        if (field.constructor.name === 'PDFCheckBox') {
           console.log(`☑️ Setting checkbox "${fieldName}" = ${value}`);
           const checkBox = field as any;
           if (typeof value === 'boolean') {
@@ -83,18 +81,24 @@ export async function fillCharacterSheetPdf(
           continue;
         }
 
-        // Check for dropdown/radio fields (has select method)
-        if (typeof (field as any).select === 'function') {
-          console.log(`📋 Setting selectable field "${fieldName}" = "${value}"`);
-          const selectField = field as any;
-          selectField.select(String(value));
+        if (field.constructor.name === 'PDFDropdown') {
+          console.log(`📋 Setting dropdown "${fieldName}" = "${value}"`);
+          const dropdown = field as any;
+          dropdown.select(String(value));
           fieldsFilled++;
           continue;
         }
 
-        // Log unknown field types for debugging
-        console.log(`⚠️ Unknown field type for "${fieldName}". Available methods:`, 
-          Object.getOwnPropertyNames(Object.getPrototypeOf(field)).filter(name => typeof (field as any)[name] === 'function'));
+        if (field.constructor.name === 'PDFRadioGroup') {
+          console.log(`🔘 Setting radio group "${fieldName}" = "${value}"`);
+          const radioGroup = field as any;
+          radioGroup.select(String(value));
+          fieldsFilled++;
+          continue;
+        }
+
+        // Fallback for other field types
+        console.log(`⚠️ Unknown field type "${field.constructor.name}" for field "${fieldName}"`);
       } catch (e) {
         console.log(`Could not set field ${fieldName}:`, e);
       }
