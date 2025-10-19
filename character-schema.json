@@ -1,0 +1,527 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "D&D 5e Character Schema",
+  "description": "A comprehensive schema for D&D 5e character generation that can be used as a guide for ChatGPT to generate characters",
+  "type": "object",
+  "properties": {
+    "identity": {
+      "type": "object",
+      "description": "Basic character identity information",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Character's full name",
+          "examples": ["Thorin Ironbeard", "Elara Starweaver", "Shadow Whisper"]
+        },
+        "class": {
+          "type": "string",
+          "description": "Character class",
+          "enum": ["Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rogue", "Sorcerer", "Warlock", "Wizard", "Artificer"]
+        },
+        "level": {
+          "type": "integer",
+          "description": "Character level (1-20)",
+          "minimum": 1,
+          "maximum": 20,
+          "examples": [1, 3, 5, 10, 15, 20]
+        },
+        "race": {
+          "type": "string",
+          "description": "Character race",
+          "enum": ["Dwarf", "Elf", "Halfling", "Human", "Dragonborn", "Gnome", "Half-Elf", "Half-Orc", "Tiefling", "Aasimar", "Genasi", "Goliath", "Tabaxi", "Triton", "Yuan-ti Pureblood"]
+        },
+        "background": {
+          "type": "string",
+          "description": "Character background",
+          "enum": ["Acolyte", "Criminal", "Folk Hero", "Noble", "Sage", "Soldier", "Charlatan", "Entertainer", "Guild Artisan", "Hermit", "Outlander", "Sailor", "Urchin"]
+        },
+        "alignment": {
+          "type": "string",
+          "description": "Character alignment",
+          "enum": ["Lawful Good", "Neutral Good", "Chaotic Good", "Lawful Neutral", "True Neutral", "Chaotic Neutral", "Lawful Evil", "Neutral Evil", "Chaotic Evil"]
+        },
+        "age": {
+          "type": ["integer", "string"],
+          "description": "Character's age",
+          "examples": [25, 45, 120, "Young adult", "Middle-aged"]
+        },
+        "height": {
+          "type": "string",
+          "description": "Character's height",
+          "examples": ["4'8\"", "5'4\"", "3'2\"", "6'0\"", "5'10\""]
+        },
+        "weight": {
+          "type": "string",
+          "description": "Character's weight",
+          "examples": ["180 lbs", "110 lbs", "35 lbs", "200 lbs", "150 lbs"]
+        },
+        "eyes": {
+          "type": "string",
+          "description": "Eye color",
+          "examples": ["Brown", "Silver", "Green", "Blue", "Hazel", "Gold", "Purple"]
+        },
+        "skin": {
+          "type": "string",
+          "description": "Skin color/complexion",
+          "examples": ["Pale", "Tan", "Dark", "Olive", "Bronze", "Fair", "Dusky"]
+        },
+        "hair": {
+          "type": "string",
+          "description": "Hair color and style",
+          "examples": ["Black", "Silver", "Brown", "Blonde", "Red", "White", "Gray"]
+        }
+      },
+      "required": ["name", "class", "level", "race", "background", "alignment"]
+    },
+    "abilities": {
+      "type": "object",
+      "description": "Core ability scores (raw values, typically 8-20)",
+      "properties": {
+        "str": {
+          "type": "integer",
+          "description": "Strength score",
+          "minimum": 1,
+          "maximum": 30,
+          "examples": [8, 10, 12, 14, 16, 18, 20]
+        },
+        "dex": {
+          "type": "integer",
+          "description": "Dexterity score",
+          "minimum": 1,
+          "maximum": 30,
+          "examples": [8, 10, 12, 14, 16, 18, 20]
+        },
+        "con": {
+          "type": "integer",
+          "description": "Constitution score",
+          "minimum": 1,
+          "maximum": 30,
+          "examples": [8, 10, 12, 14, 16, 18, 20]
+        },
+        "int": {
+          "type": "integer",
+          "description": "Intelligence score",
+          "minimum": 1,
+          "maximum": 30,
+          "examples": [8, 10, 12, 14, 16, 18, 20]
+        },
+        "wis": {
+          "type": "integer",
+          "description": "Wisdom score",
+          "minimum": 1,
+          "maximum": 30,
+          "examples": [8, 10, 12, 14, 16, 18, 20]
+        },
+        "cha": {
+          "type": "integer",
+          "description": "Charisma score",
+          "minimum": 1,
+          "maximum": 30,
+          "examples": [8, 10, 12, 14, 16, 18, 20]
+        }
+      },
+      "required": ["str", "dex", "con", "int", "wis", "cha"]
+    },
+    "proficiencies": {
+      "type": "object",
+      "description": "Proficiency information for saves and skills",
+      "properties": {
+        "saves": {
+          "type": "array",
+          "description": "Proficient saving throws",
+          "items": {
+            "type": "string",
+            "enum": ["str", "dex", "con", "int", "wis", "cha"]
+          },
+          "examples": [["str", "con"], ["dex", "int"], ["int", "wis"]]
+        },
+        "skills": {
+          "type": "array",
+          "description": "Proficient skills",
+          "items": {
+            "type": "string",
+            "enum": ["athletics", "acrobatics", "sleight_of_hand", "stealth", "arcana", "history", "investigation", "nature", "religion", "animal_handling", "insight", "medicine", "perception", "survival", "deception", "intimidation", "performance", "persuasion"]
+          },
+          "examples": [["athletics", "intimidation", "survival"], ["arcana", "history", "investigation", "insight"], ["acrobatics", "deception", "investigation", "perception", "sleight_of_hand", "stealth"]]
+        }
+      },
+      "required": ["saves", "skills"]
+    },
+    "combat": {
+      "type": "object",
+      "description": "Combat-related statistics and equipment",
+      "properties": {
+        "armor_base_ac": {
+          "type": ["integer", "null"],
+          "description": "Base AC from armor (optional override)",
+          "examples": [12, 14, 16, 18, 20]
+        },
+        "speed_ft": {
+          "type": "integer",
+          "description": "Movement speed in feet",
+          "examples": [25, 30, 35, 40]
+        },
+        "hit_points_max": {
+          "type": ["integer", "null"],
+          "description": "Maximum hit points (optional override)",
+          "examples": [20, 35, 50, 75, 100]
+        },
+        "hit_dice_total": {
+          "type": ["string", "null"],
+          "description": "Total hit dice (optional override)",
+          "examples": ["3d10", "5d6", "4d8"]
+        },
+        "weapons": {
+          "type": "array",
+          "description": "Character's weapons",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Weapon name",
+                "examples": ["Longsword", "Handaxe", "Quarterstaff", "Dagger", "Rapier", "Shortbow", "Greatsword", "Crossbow"]
+              },
+              "ability": {
+                "type": "string",
+                "description": "Ability used for attack rolls",
+                "enum": ["str", "dex", "con", "int", "wis", "cha"]
+              },
+              "bonus_misc": {
+                "type": "integer",
+                "description": "Miscellaneous attack bonus",
+                "default": 0,
+                "examples": [0, 1, 2, 3]
+              },
+              "damage": {
+                "type": "string",
+                "description": "Damage dice and type",
+                "examples": ["1d8+3 slashing", "1d6+3 slashing", "1d6-1 bludgeoning", "1d4+2 piercing", "1d8+3 piercing", "1d6+3 piercing"]
+              }
+            },
+            "required": ["name", "ability", "damage"]
+          }
+        }
+      },
+      "required": ["speed_ft", "weapons"]
+    },
+    "spellcasting": {
+      "type": ["object", "null"],
+      "description": "Spellcasting information (null for non-spellcasters)",
+      "properties": {
+        "class": {
+          "type": ["string", "null"],
+          "description": "Spellcasting class",
+          "examples": ["Wizard", "Cleric", "Sorcerer", "Warlock", "Bard", "Druid", "Paladin", "Ranger"]
+        },
+        "ability": {
+          "type": ["string", "null"],
+          "description": "Spellcasting ability",
+          "enum": ["int", "wis", "cha"]
+        },
+        "cantrips": {
+          "type": "array",
+          "description": "Known cantrips",
+          "items": {
+            "type": "string"
+          },
+          "examples": [["Fire Bolt", "Mage Hand", "Prestidigitation", "Ray of Frost"], ["Sacred Flame", "Guidance", "Thaumaturgy"], ["Eldritch Blast", "Mage Hand", "Prestidigitation"]]
+        },
+        "spells_known": {
+          "type": "object",
+          "description": "Spells known by level",
+          "patternProperties": {
+            "^[1-9]$": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "examples": [
+            {
+              "1": ["Magic Missile", "Shield", "Mage Armor", "Detect Magic", "Identify", "Charm Person"],
+              "2": ["Misty Step", "Scorching Ray", "Invisibility", "Suggestion"],
+              "3": ["Fireball", "Counterspell", "Dispel Magic"]
+            }
+          ]
+        },
+        "slots": {
+          "type": "object",
+          "description": "Spell slots available by level",
+          "patternProperties": {
+            "^[1-9]$": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "examples": [
+            {
+              "1": 4,
+              "2": 3,
+              "3": 2
+            }
+          ]
+        },
+        "slots_used": {
+          "type": "object",
+          "description": "Spell slots used by level (optional)",
+          "patternProperties": {
+            "^[1-9]$": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        }
+      }
+    },
+    "inventory": {
+      "type": "object",
+      "description": "Equipment and currency",
+      "properties": {
+        "equipment_text": {
+          "type": "string",
+          "description": "Equipment list as text",
+          "examples": [
+            "Chain Mail, Shield, Longsword, Handaxe (2), Dungeoneer's Pack, Insignia of Rank, Set of Bone Dice, Common Clothes",
+            "Quarterstaff, Dagger, Component Pouch, Scholar's Pack, Spellbook, Bottle of Black Ink, Quill, Small Knife, Letter from a Dead Colleague, Common Clothes, 10 gp",
+            "Leather Armor, Rapier, Shortbow, Quiver of 20 Arrows, Dagger (2), Thieves' Tools, Burglar's Pack, Crowbar, Set of Fine Clothes, Belt Pouch with 15 gp"
+          ]
+        },
+        "currency": {
+          "type": "object",
+          "description": "Currency amounts",
+          "properties": {
+            "cp": {
+              "type": "integer",
+              "description": "Copper pieces",
+              "minimum": 0,
+              "examples": [0, 10, 50, 100]
+            },
+            "sp": {
+              "type": "integer",
+              "description": "Silver pieces",
+              "minimum": 0,
+              "examples": [0, 5, 25, 50]
+            },
+            "ep": {
+              "type": "integer",
+              "description": "Electrum pieces",
+              "minimum": 0,
+              "examples": [0, 2, 10, 20]
+            },
+            "gp": {
+              "type": "integer",
+              "description": "Gold pieces",
+              "minimum": 0,
+              "examples": [10, 15, 25, 50, 100]
+            },
+            "pp": {
+              "type": "integer",
+              "description": "Platinum pieces",
+              "minimum": 0,
+              "examples": [0, 1, 5, 10]
+            }
+          },
+          "required": ["cp", "sp", "ep", "gp", "pp"]
+        }
+      },
+      "required": ["currency"]
+    },
+    "roleplay": {
+      "type": "object",
+      "description": "Roleplay and character development information",
+      "properties": {
+        "personality_traits": {
+          "type": "string",
+          "description": "Character's personality traits",
+          "examples": [
+            "I can stare down a hell hound without flinching. I enjoy being strong and like breaking things.",
+            "I use polysyllabic words that convey the impression of great erudition. I've read every book in the world's greatest libraries.",
+            "I always have a plan for when things go wrong. I am incredibly slow to trust."
+          ]
+        },
+        "ideals": {
+          "type": "string",
+          "description": "Character's ideals and values",
+          "examples": [
+            "I face problems head-on. A simple, direct solution is the best path to success.",
+            "Knowledge. The path to power and self-improvement is through knowledge.",
+            "Freedom. Chains are meant to be broken, as are those who would forge them."
+          ]
+        },
+        "bonds": {
+          "type": "string",
+          "description": "Character's bonds and connections",
+          "examples": [
+            "I would still lay down my life for the people I served with.",
+            "I've been searching my whole life for the answer to a certain question.",
+            "I'm trying to pay off an old debt I owe to a generous person who helped me when I was younger."
+          ]
+        },
+        "flaws": {
+          "type": "string",
+          "description": "Character's flaws and weaknesses",
+          "examples": [
+            "I have little respect for anyone who is not a proven warrior.",
+            "I am easily distracted by the promise of information.",
+            "When I see something valuable, I can't think about anything but how to steal it."
+          ]
+        },
+        "features_and_traits": {
+          "type": ["string", "array"],
+          "description": "Racial and class features",
+          "examples": [
+            ["Dwarven Resilience: Advantage on saves vs poison", "Stonecunning: Double proficiency on History checks related to stonework"],
+            ["Arcane Recovery: Once per day when you finish a short rest, you can recover some of your spell slots", "Spell Mastery: You have achieved such mastery over certain spells that you can cast them at will"],
+            ["Lucky: When you roll a 1 on an attack roll, ability check, or saving throw, you can reroll the die", "Brave: You have advantage on saving throws against being frightened"]
+          ]
+        },
+        "additional_features_traits": {
+          "type": ["string", "array"],
+          "description": "Additional features and traits"
+        },
+        "proficiencies_and_languages": {
+          "type": "string",
+          "description": "Languages and tool proficiencies",
+          "examples": [
+            "Common, Dwarvish, Smith's Tools, Mason's Tools",
+            "Common, Elvish, Draconic, Abyssal, Arcana, History, Investigation, Insight",
+            "Common, Halfling, Thieves' Cant, Thieves' Tools, Disguise Kit, Forgery Kit"
+          ]
+        },
+        "allies": {
+          "type": "string",
+          "description": "Character's allies and connections",
+          "examples": [
+            "The Ironbeard Clan, The Stoneguard Regiment",
+            "The Arcane University, The Starweaver Family",
+            "The Shadow Thieves Guild, The Whisper Family"
+          ]
+        },
+        "allies_organizations": {
+          "type": "string",
+          "description": "Organizations the character is allied with"
+        },
+        "faction_name": {
+          "type": "string",
+          "description": "Primary faction affiliation",
+          "examples": ["The Stoneguard", "The Arcane University", "The Shadow Thieves"]
+        },
+        "faction_symbol_image": {
+          "type": ["string", "null"],
+          "description": "Faction symbol image (usually null)"
+        },
+        "backstory": {
+          "type": "string",
+          "description": "Character's background story",
+          "examples": [
+            "A veteran soldier who served in the Stoneguard Regiment, defending the mountain passes from orc raids.",
+            "A brilliant young wizard who left the Arcane University to seek ancient knowledge and magical artifacts in the wider world.",
+            "A former member of a notorious thieves' guild who turned to adventuring to escape their past and make amends."
+          ]
+        },
+        "character_appearance": {
+          "type": "string",
+          "description": "Detailed physical description",
+          "examples": [
+            "Thorin stands at a typical dwarven height with a broad, muscular build that speaks to years of military training. His black beard is braided with small metal rings and reaches his chest, while his brown eyes hold the steady gaze of a seasoned warrior.",
+            "Elara possesses the ethereal beauty typical of her elven heritage, with silver hair that seems to shimmer with starlight and pale skin that glows softly in moonlight.",
+            "Shadow is small even for a halfling, with a wiry build that allows for quick, silent movement. Their brown hair is kept short and practical, and their green eyes constantly scan their surroundings."
+          ]
+        },
+        "treasure": {
+          "type": "string",
+          "description": "Special treasure or items",
+          "examples": [
+            "A family heirloom warhammer passed down through generations.",
+            "A mysterious crystal orb that seems to contain swirling starlight.",
+            "A mysterious key that opens a lockbox hidden somewhere in the city."
+          ]
+        },
+        "character_image": {
+          "type": ["string", "boolean", "null"],
+          "description": "Character image reference (usually null)"
+        }
+      }
+    }
+  },
+  "required": ["identity", "abilities", "proficiencies", "combat", "inventory", "roleplay"],
+  "examples": [
+    {
+      "identity": {
+        "name": "Thorin Ironbeard",
+        "class": "Fighter",
+        "level": 3,
+        "race": "Dwarf",
+        "background": "Soldier",
+        "alignment": "Lawful Good",
+        "age": 45,
+        "height": "4'8\"",
+        "weight": "180 lbs",
+        "eyes": "Brown",
+        "skin": "Pale",
+        "hair": "Black"
+      },
+      "abilities": {
+        "str": 16,
+        "dex": 12,
+        "con": 15,
+        "int": 10,
+        "wis": 13,
+        "cha": 11
+      },
+      "proficiencies": {
+        "saves": ["str", "con"],
+        "skills": ["athletics", "intimidation", "survival"]
+      },
+      "combat": {
+        "armor_base_ac": 18,
+        "speed_ft": 25,
+        "weapons": [
+          {
+            "name": "Longsword",
+            "ability": "str",
+            "bonus_misc": 0,
+            "damage": "1d8+3 slashing"
+          },
+          {
+            "name": "Handaxe",
+            "ability": "str",
+            "bonus_misc": 0,
+            "damage": "1d6+3 slashing"
+          }
+        ]
+      },
+      "spellcasting": null,
+      "inventory": {
+        "equipment_text": "Chain Mail, Shield, Longsword, Handaxe (2), Dungeoneer's Pack, Insignia of Rank, Set of Bone Dice, Common Clothes",
+        "currency": {
+          "cp": 0,
+          "sp": 0,
+          "ep": 0,
+          "gp": 10,
+          "pp": 0
+        }
+      },
+      "roleplay": {
+        "personality_traits": "I can stare down a hell hound without flinching. I enjoy being strong and like breaking things.",
+        "ideals": "I face problems head-on. A simple, direct solution is the best path to success.",
+        "bonds": "I would still lay down my life for the people I served with.",
+        "flaws": "I have little respect for anyone who is not a proven warrior.",
+        "features_and_traits": [
+          "Dwarven Resilience: Advantage on saves vs poison",
+          "Stonecunning: Double proficiency on History checks related to stonework"
+        ],
+        "proficiencies_and_languages": "Common, Dwarvish, Smith's Tools, Mason's Tools",
+        "allies": "The Ironbeard Clan, The Stoneguard Regiment",
+        "faction_name": "The Stoneguard",
+        "faction_symbol_image": null,
+        "backstory": "A veteran soldier who served in the Stoneguard Regiment, defending the mountain passes from orc raids.",
+        "character_appearance": "Thorin stands at a typical dwarven height with a broad, muscular build that speaks to years of military training. His black beard is braided with small metal rings and reaches his chest, while his brown eyes hold the steady gaze of a seasoned warrior.",
+        "treasure": "A family heirloom warhammer passed down through generations.",
+        "character_image": null
+      }
+    }
+  ]
+}
