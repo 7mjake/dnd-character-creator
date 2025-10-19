@@ -184,9 +184,9 @@ const CharacterSheetFiller: React.FC = () => {
           if (result.success && result.blob) {
             pdfBlobs.push(result.blob);
             const safeName = character.identity.name.replace(/[^a-zA-Z0-9]/g, '_');
-            filenames.push(`${safeName}_${character.identity.class}_Level${character.identity.level}.pdf`);
+            filenames.push(`${character.identity.class}_Level${character.identity.level}.pdf`);
           } else {
-            setError(`Failed to generate PDF for ${character.identity.name}: ${result.error || 'Unknown error'}`);
+            setError(`Failed to generate PDF for ${character.identity.class}_Level${character.identity.level}: ${result.error || 'Unknown error'}`);
             return;
           }
         }

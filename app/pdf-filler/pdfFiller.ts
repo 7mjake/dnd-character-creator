@@ -129,7 +129,7 @@ export async function fillCharacterSheetPdf(
         // Fallback to download if popup is blocked
         const link = document.createElement('a');
         link.href = url;
-        link.download = filename || `${characterData.identity.name.replace(/\s+/g, '_')}_Character_Sheet.pdf`;
+        link.download = filename || `${characterData.identity.class}_Level${characterData.identity.level}.pdf`;
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
@@ -138,7 +138,7 @@ export async function fillCharacterSheetPdf(
       // Download PDF
       const link = document.createElement('a');
       link.href = url;
-      link.download = filename || `${characterData.identity.name.replace(/\s+/g, '_')}_Character_Sheet.pdf`;
+      link.download = filename || `${characterData.identity.class}_Level${characterData.identity.level}}.pdf`;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
