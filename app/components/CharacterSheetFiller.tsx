@@ -96,6 +96,26 @@ const CharacterSheetFiller: React.FC = () => {
     setPdfFields(fields);
   };
 
+  const handleLoadSampleArray = async () => {
+    try {
+      const response = await fetch('/sample-characters-array.json');
+      const data = await response.json();
+      setJsonInput(JSON.stringify(data, null, 2));
+      setCharacterDataArray(data);
+      setCharacterData(null);
+      setSelectedCharacter('array');
+      setError(null);
+      
+      // Generate PDF fields for preview
+      const fieldsArray = data.map((char: InputModel) => toPdfFields(char));
+      setPdfFieldsArray(fieldsArray);
+      setPdfFields(null);
+    } catch (error) {
+      setError('Failed to load sample character array');
+      console.error('Failed to load sample character array:', error);
+    }
+  };
+
   const handleParseJson = () => {
     const parsed = validateAndParseJson(jsonInput);
     if (parsed) {
@@ -357,32 +377,60 @@ const CharacterSheetFiller: React.FC = () => {
             {sampleCharacters && (
               <div className="mb-4 p-4 bg-blue-50 border border-blue-200 rounded-md">
                 <h3 className="font-semibold text-blue-800 mb-3">Sample Characters</h3>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-                  {Object.entries(sampleCharacters).map(([key, character]: [string, any]) => (
+                {isBatchMode ? (
+                  <div>
                     <button
-                      key={key}
-                      onClick={() => handleLoadSample(key)}
-                      className={`p-3 text-left rounded-md border-2 transition-colors ${
-                        selectedCharacter === key
+                      onClick={handleLoadSampleArray}
+                      className={`w-full p-4 text-left rounded-md border-2 transition-colors ${
+                        selectedCharacter === 'array'
                           ? 'border-blue-500 bg-blue-100'
                           : 'border-blue-200 bg-white hover:border-blue-300 hover:bg-blue-50'
                       }`}
                     >
-                      <div className="font-semibold text-blue-800 capitalize">
-                        {character.name}
+                      <div className="font-semibold text-blue-800">
+                        📦 Load Sample Character Array
                       </div>
                       <div className="text-sm text-blue-600 mt-1">
-                        {character.description}
+                        Load all sample characters for batch processing
                       </div>
                       <div className="text-xs text-blue-500 mt-2">
-                        Level {character.data.identity.level} {character.data.identity.class}
+                        Contains multiple characters ready for batch PDF generation
                       </div>
                     </button>
-                  ))}
-                </div>
-                <p className="text-xs text-blue-600 mt-3">
-                  Click on a character to load their data into the form.
-                </p>
+                    <p className="text-xs text-blue-600 mt-3">
+                      Click to load the complete sample character array for batch processing.
+                    </p>
+                  </div>
+                ) : (
+                  <div>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                      {Object.entries(sampleCharacters).map(([key, character]: [string, any]) => (
+                        <button
+                          key={key}
+                          onClick={() => handleLoadSample(key)}
+                          className={`p-3 text-left rounded-md border-2 transition-colors ${
+                            selectedCharacter === key
+                              ? 'border-blue-500 bg-blue-100'
+                              : 'border-blue-200 bg-white hover:border-blue-300 hover:bg-blue-50'
+                          }`}
+                        >
+                          <div className="font-semibold text-blue-800 capitalize">
+                            {character.name}
+                          </div>
+                          <div className="text-sm text-blue-600 mt-1">
+                            {character.description}
+                          </div>
+                          <div className="text-xs text-blue-500 mt-2">
+                            Level {character.data.identity.level} {character.data.identity.class}
+                          </div>
+                        </button>
+                      ))}
+                    </div>
+                    <p className="text-xs text-blue-600 mt-3">
+                      Click on a character to load their data into the form.
+                    </p>
+                  </div>
+                )}
               </div>
             )}
 
