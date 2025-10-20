@@ -1,34 +1,33 @@
 [
   {
     "identity": {
-      "name": "Thorin Ironbeard",
-      "class": "Fighter",
+      "class": "Paladin",
       "level": 3,
-      "race": "Dwarf",
-      "background": "Soldier",
+      "race": "Human",
+      "background": "Acolyte",
       "alignment": "Lawful Good",
-      "age": 45,
-      "height": "4'8\"",
-      "weight": "180 lbs",
-      "eyes": "Brown",
-      "skin": "Pale",
-      "hair": "Black"
+      "age": 35,
+      "height": "6'0\"",
+      "weight": "190 lbs",
+      "eyes": "Blue",
+      "skin": "Fair",
+      "hair": "Blonde"
     },
     "abilities": {
       "str": 16,
-      "dex": 12,
-      "con": 15,
-      "int": 10,
-      "wis": 13,
-      "cha": 11
+      "dex": 10,
+      "con": 14,
+      "int": 8,
+      "wis": 12,
+      "cha": 13
     },
     "proficiencies": {
-      "saves": ["str", "con"],
-      "skills": ["athletics", "intimidation", "survival"]
+      "saves": ["wis", "cha"],
+      "skills": ["athletics", "intimidation", "insight", "religion"]
     },
     "combat": {
       "armor_base_ac": 18,
-      "speed_ft": 25,
+      "speed_ft": 30,
       "weapons": [
         {
           "name": "Longsword",
@@ -37,16 +36,106 @@
           "damage": "1d8+3 slashing"
         },
         {
-          "name": "Handaxe",
+          "name": "Javelin",
           "ability": "str",
           "bonus_misc": 0,
-          "damage": "1d6+3 slashing"
+          "damage": "1d6+3 piercing"
+        }
+      ]
+    },
+    "spellcasting": {
+      "class": "Paladin",
+      "ability": "cha",
+      "cantrips": [],
+      "spells_known": {
+        "1": ["Divine Favor", "Hunter's Mark", "Protection from Evil and Good"]
+      },
+      "slots": {
+        "1": 3
+      },
+      "slots_used": {
+        "1": 0
+      }
+    },
+    "inventory": {
+      "equipment_text": "Chain Mail, Shield, Longsword, Javelins (5), Holy Symbol, Explorer's Pack, Prayer Book, 5 sticks of incense, Vestments, 15 gp",
+      "currency": {
+        "cp": 0,
+        "sp": 0,
+        "ep": 0,
+        "gp": 15,
+        "pp": 0
+      }
+    },
+    "roleplay": {
+      "personality_traits": "You speak with calm conviction, rarely raising your voice, and always seeking justice.",
+      "ideals": "Retribution. Those who commit evil must be punished in kind.",
+      "bonds": "Your faith compels you to destroy all who walk in darkness.",
+      "flaws": "You often act without mercy, letting vengeance cloud compassion.",
+      "features_and_traits": [
+        "Divine Sense: As an action, you can detect good and evil until the end of your next turn. You can use this feature 4 times per long rest.",
+        "Lay on Hands: You have a healing pool of 15 HP that replenishes after a long rest. You can use it to heal the wounded or cure disease/poison.",
+        "Fighting Style: Defense — While you are wearing armor, you gain a +1 bonus to AC.",
+        "Divine Smite: When you hit a creature with a melee weapon attack, you can expend one spell slot to deal radiant damage in addition to the weapon’s damage.",
+        "Oath of Vengeance Features: Abjure Enemy and Vow of Enmity — special actions to hinder or single out foes."
+      ],
+      "proficiencies_and_languages": "Common, Celestial, Religion, Insight, Athletics, Intimidation",
+      "allies": "Clergy of the Radiant Flame",
+      "faction_name": "Order of the Burning Light",
+      "faction_symbol_image": null,
+      "backstory": "You were raised in a monastic order devoted to stamping out evil. When the temple fell to dark forces, you took up arms and swore vengeance. Justice became your creed.",
+      "character_appearance": "You carry yourself with rigid discipline, clad in shining armor that gleams with divine purpose. Your stern gaze unnerves the wicked.",
+      "treasure": "An iron holy symbol scorched by demonic fire — a relic from the siege of your temple.",
+      "character_image": null
+    }
+  },
+  {
+    "identity": {
+      "class": "Fighter",
+      "level": 3,
+      "race": "Dwarf",
+      "background": "Soldier",
+      "alignment": "Lawful Neutral",
+      "age": 60,
+      "height": "4'8\"",
+      "weight": "185 lbs",
+      "eyes": "Brown",
+      "skin": "Ruddy",
+      "hair": "Dark Brown"
+    },
+    "abilities": {
+      "str": 16,
+      "dex": 12,
+      "con": 15,
+      "int": 10,
+      "wis": 13,
+      "cha": 8
+    },
+    "proficiencies": {
+      "saves": ["str", "con"],
+      "skills": ["athletics", "intimidation", "survival", "perception"]
+    },
+    "combat": {
+      "armor_base_ac": 18,
+      "speed_ft": 25,
+      "weapons": [
+        {
+          "name": "Battleaxe",
+          "ability": "str",
+          "bonus_misc": 0,
+          "damage": "1d8+3 slashing"
+        },
+        {
+          "name": "Warhammer",
+          "ability": "str",
+          "bonus_misc": 0,
+          "damage": "1d8+3 bludgeoning"
         }
       ]
     },
     "spellcasting": null,
     "inventory": {
-      "equipment_text": "Chain Mail, Shield, Longsword, Handaxe (2), Dungeoneer's Pack, Insignia of Rank, Set of Bone Dice, Common Clothes",
+      "equipment_text": "Chain Mail, Battleaxe, Warhammer, Shield, Dungeoneer's Pack, Insignia of Rank, Set of Dice, 10 gp",
       "currency": {
         "cp": 0,
         "sp": 0,
@@ -56,173 +145,151 @@
       }
     },
     "roleplay": {
-      "personality_traits": "I can stare down a hell hound without flinching. I enjoy being strong and like breaking things.",
-      "ideals": "I face problems head-on. A simple, direct solution is the best path to success.",
-      "bonds": "I would still lay down my life for the people I served with.",
-      "flaws": "I have little respect for anyone who is not a proven warrior.",
+      "personality_traits": "You boast about your battle scars and relish recounting tales of past glories.",
+      "ideals": "Glory. You fight not just to survive, but to earn a place in legend.",
+      "bonds": "Your old squad still holds your loyalty, even after parting ways.",
+      "flaws": "You rush headlong into danger, eager to prove yourself again and again.",
       "features_and_traits": [
-        "Dwarven Resilience: Advantage on saves vs poison",
-        "Stonecunning: Double proficiency on History checks related to stonework"
+        "Dwarven Resilience: You have advantage on saving throws against poison, and resistance against poison damage.",
+        "Stonecunning: When making an Intelligence (History) check related to stonework, you are considered proficient and add double proficiency bonus.",
+        "Second Wind: As a bonus action, regain 1d10 + 3 HP once per short rest.",
+        "Action Surge: Take an additional action on your turn, once per short rest.",
+        "Improved Critical: Your weapon attacks score a critical hit on a roll of 19 or 20."
       ],
-      "proficiencies_and_languages": "Common, Dwarvish, Smith's Tools, Mason's Tools",
-      "allies": "The Ironbeard Clan, The Stoneguard Regiment",
+      "proficiencies_and_languages": "Common, Dwarvish, Dice Set, Smith's Tools, Vehicles (Land)",
+      "allies": "Stoneguard Regiment",
       "faction_name": "The Stoneguard",
       "faction_symbol_image": null,
-      "backstory": "A veteran soldier who served in the Stoneguard Regiment, defending the mountain passes from orc raids.",
-      "character_appearance": "Thorin stands at a typical dwarven height with a broad, muscular build that speaks to years of military training. His black beard is braided with small metal rings and reaches his chest, while his brown eyes hold the steady gaze of a seasoned warrior. Scars crisscross his pale skin, each one telling a story of battles fought. He carries himself with the disciplined posture of a soldier, and his hands are calloused from years of wielding weapons and working with metal.",
-      "treasure": "A family heirloom warhammer passed down through generations.",
+      "backstory": "You served for decades in the dwarven army, carving a path through goblin hordes and orc clans. Retirement didn’t stick — the battlefield still calls.",
+      "character_appearance": "You stand solid and squat, your armor battered but well-maintained. A patchwork of scars marks your exposed skin, each one a story.",
+      "treasure": "A drinking horn etched with the names of fallen comrades.",
       "character_image": null
     }
   },
   {
     "identity": {
-      "name": "Elara Starweaver",
-      "class": "Wizard",
-      "level": 5,
-      "race": "Elf",
-      "background": "Sage",
-      "alignment": "Chaotic Good",
-      "age": 120,
-      "height": "5'4\"",
-      "weight": "110 lbs",
-      "eyes": "Silver",
-      "skin": "Pale",
-      "hair": "Silver"
+      "class": "Warlock",
+      "level": 3,
+      "race": "Half-Elf",
+      "background": "Charlatan",
+      "alignment": "Chaotic Neutral",
+      "age": 28,
+      "height": "5'10\"",
+      "weight": "160 lbs",
+      "eyes": "Amber",
+      "skin": "Olive",
+      "hair": "Black"
     },
     "abilities": {
       "str": 8,
       "dex": 14,
-      "con": 12,
-      "int": 16,
-      "wis": 13,
-      "cha": 10
+      "con": 13,
+      "int": 10,
+      "wis": 12,
+      "cha": 16
     },
     "proficiencies": {
-      "saves": ["int", "wis"],
-      "skills": ["arcana", "history", "investigation", "insight"]
+      "saves": ["wis", "cha"],
+      "skills": ["deception", "intimidation", "arcana", "sleight_of_hand", "persuasion"]
     },
     "combat": {
-      "armor_base_ac": 12,
+      "armor_base_ac": 13,
       "speed_ft": 30,
       "weapons": [
-        {
-          "name": "Quarterstaff",
-          "ability": "str",
-          "bonus_misc": 0,
-          "damage": "1d6-1 bludgeoning"
-        },
         {
           "name": "Dagger",
           "ability": "dex",
           "bonus_misc": 0,
           "damage": "1d4+2 piercing"
+        },
+        {
+          "name": "Light Crossbow",
+          "ability": "dex",
+          "bonus_misc": 0,
+          "damage": "1d8+2 piercing"
         }
       ]
     },
     "spellcasting": {
-      "class": "Wizard",
-      "ability": "int",
-      "cantrips": [
-        "Fire Bolt",
-        "Mage Hand",
-        "Prestidigitation",
-        "Ray of Frost"
-      ],
+      "class": "Warlock",
+      "ability": "cha",
+      "cantrips": ["Eldritch Blast", "Prestidigitation", "Thaumaturgy"],
       "spells_known": {
-        "1": [
-          "Magic Missile",
-          "Shield",
-          "Mage Armor",
-          "Detect Magic",
-          "Identify",
-          "Charm Person"
-        ],
-        "2": [
-          "Misty Step",
-          "Scorching Ray",
-          "Invisibility",
-          "Suggestion"
-        ],
-        "3": [
-          "Fireball",
-          "Counterspell",
-          "Dispel Magic"
-        ]
+        "1": ["Armor of Agathys", "Burning Hands", "Hellish Rebuke"],
+        "2": ["Mirror Image", "Scorching Ray"]
       },
       "slots": {
-        "1": 4,
-        "2": 3,
-        "3": 2
+        "1": 0,
+        "2": 2
+      },
+      "slots_used": {
+        "2": 0
       }
     },
     "inventory": {
-      "equipment_text": "Quarterstaff, Dagger, Component Pouch, Scholar's Pack, Spellbook, Bottle of Black Ink, Quill, Small Knife, Letter from a Dead Colleague, Common Clothes, 10 gp",
+      "equipment_text": "Leather Armor, Dagger (2), Light Crossbow, Arcane Focus, Disguise Kit, Charlatan's Pack, Forged Documents, 25 gp",
       "currency": {
         "cp": 0,
         "sp": 0,
         "ep": 0,
-        "gp": 10,
+        "gp": 25,
         "pp": 0
       }
     },
     "roleplay": {
-      "personality_traits": "I use polysyllabic words that convey the impression of great erudition. I've read every book in the world's greatest libraries.",
-      "ideals": "Knowledge. The path to power and self-improvement is through knowledge.",
-      "bonds": "I've been searching my whole life for the answer to a certain question.",
-      "flaws": "I am easily distracted by the promise of information.",
+      "personality_traits": "You always smile, even when lying through your teeth.",
+      "ideals": "Freedom. You answer to no one but the voice in your head — your patron.",
+      "bonds": "You seek the power promised by your patron, no matter the cost.",
+      "flaws": "You can't help but show off your magic, even when it draws suspicion.",
       "features_and_traits": [
-        "Arcane Recovery: Once per day when you finish a short rest, you can recover some of your spell slots",
-        "Spell Mastery: You have achieved such mastery over certain spells that you can cast them at will"
+        "Darkvision: You can see in darkness up to 60 feet.",
+        "Fey Ancestry: You have advantage on saving throws against being charmed, and magic can’t put you to sleep.",
+        "Pact Magic: You can cast warlock spells using Charisma. Your spell slots are regained on a short rest.",
+        "Fiendish Resilience: When you reduce a hostile creature to 0 HP, gain temporary hit points equal to your Charisma modifier + your warlock level.",
+        "Eldritch Invocations: Agonizing Blast (add CHA to Eldritch Blast damage), Mask of Many Faces (cast Disguise Self at will)."
       ],
-      "proficiencies_and_languages": "Common, Elvish, Draconic, Abyssal, Arcana, History, Investigation, Insight",
-      "allies": "The Arcane University, The Starweaver Family",
-      "faction_name": "The Arcane University",
+      "proficiencies_and_languages": "Common, Elvish, Infernal, Disguise Kit, Forgery Kit",
+      "allies": "None you trust completely",
+      "faction_name": "The Ember Court",
       "faction_symbol_image": null,
-      "backstory": "A brilliant young wizard who left the Arcane University to seek ancient knowledge and magical artifacts in the wider world.",
-      "character_appearance": "Elara possesses the ethereal beauty typical of her elven heritage, with silver hair that seems to shimmer with starlight and pale skin that glows softly in moonlight. Her silver eyes hold an otherworldly intelligence, and she moves with the graceful precision of one who has spent years in study and meditation. She often wears robes adorned with celestial patterns, and her fingers are stained with various inks from her constant note-taking. Small magical trinkets and crystals dangle from her belt, and she carries herself with the quiet confidence of someone who knows the true power of knowledge.",
-      "treasure": "A mysterious crystal orb that seems to contain swirling starlight.",
+      "backstory": "You once conned a noble out of their heirloom — only to discover it was a vessel of infernal power. Now a devil whispers in your dreams, and fire dances at your fingertips.",
+      "character_appearance": "You wear stylish, dark clothing with a devil-may-care grin. Firelight seems to cling to your eyes when you speak.",
+      "treasure": "A black opal ring that pulses with infernal heat.",
       "character_image": null
     }
   },
   {
     "identity": {
-      "name": "Shadow Whisper",
       "class": "Rogue",
-      "level": 4,
+      "level": 3,
       "race": "Halfling",
       "background": "Criminal",
       "alignment": "Chaotic Neutral",
-      "age": 28,
-      "height": "3'2\"",
-      "weight": "35 lbs",
+      "age": 24,
+      "height": "3'0\"",
+      "weight": "38 lbs",
       "eyes": "Green",
       "skin": "Tan",
       "hair": "Brown"
     },
     "abilities": {
-      "str": 10,
-      "dex": 17,
+      "str": 8,
+      "dex": 16,
       "con": 14,
-      "int": 13,
-      "wis": 12,
-      "cha": 15
+      "int": 10,
+      "wis": 13,
+      "cha": 12
     },
     "proficiencies": {
       "saves": ["dex", "int"],
-      "skills": ["acrobatics", "deception", "investigation", "perception", "sleight_of_hand", "stealth"]
+      "skills": ["stealth", "acrobatics", "deception", "sleight_of_hand", "investigation", "perception"]
     },
     "combat": {
-      "armor_base_ac": 14,
+      "armor_base_ac": 15,
       "speed_ft": 25,
       "weapons": [
         {
-          "name": "Rapier",
-          "ability": "dex",
-          "bonus_misc": 0,
-          "damage": "1d8+3 piercing"
-        },
-        {
-          "name": "Shortbow",
+          "name": "Shortsword",
           "ability": "dex",
           "bonus_misc": 0,
           "damage": "1d6+3 piercing"
@@ -237,7 +304,100 @@
     },
     "spellcasting": null,
     "inventory": {
-      "equipment_text": "Leather Armor, Rapier, Shortbow, Quiver of 20 Arrows, Dagger (2), Thieves' Tools, Burglar's Pack, Crowbar, Set of Fine Clothes, Belt Pouch with 15 gp",
+      "equipment_text": "Leather Armor, Shortsword, Daggers (2), Thieves’ Tools, Disguise Kit, Burglar’s Pack, Set of Dark Clothes, 20 gp",
+      "currency": {
+        "cp": 0,
+        "sp": 0,
+        "ep": 0,
+        "gp": 20,
+        "pp": 0
+      }
+    },
+    "roleplay": {
+      "personality_traits": "You always have a cheerful word and a hidden blade.",
+      "ideals": "Freedom. Life’s too short for cages or rules.",
+      "bonds": "You owe a life debt to the guild master who raised you.",
+      "flaws": "You can’t resist showing off, even when it’s risky.",
+      "features_and_traits": [
+        "Lucky: When you roll a 1 on the d20, you can reroll and must use the new roll.",
+        "Brave: You have advantage on saving throws against being frightened.",
+        "Nimbleness: You can move through the space of any creature that is of a size larger than yours.",
+        "Cunning Action: You can Dash, Disengage, or Hide as a bonus action.",
+        "Assassinate: You have advantage on attack rolls against surprised creatures, and hits against surprised targets are critical."
+      ],
+      "proficiencies_and_languages": "Common, Halfling, Thieves' Cant, Thieves’ Tools, Disguise Kit",
+      "allies": "The Silent Knives Thieves’ Guild",
+      "faction_name": "The Whispered Hand",
+      "faction_symbol_image": null,
+      "backstory": "You grew up on the streets, learning how to slip a purse or vanish into shadows. But your latest contract has made you wonder who’s really pulling the strings.",
+      "character_appearance": "You are small and nimble, dressed in muted greys and blacks. A glint in your eye and quick fingers make you both endearing and dangerous.",
+      "treasure": "An enchanted cloak clasp that muffles your footsteps when moving fast.",
+      "character_image": null
+    }
+  },
+  {
+    "identity": {
+      "class": "Wizard",
+      "level": 3,
+      "race": "Elf",
+      "background": "Sage",
+      "alignment": "Neutral",
+      "age": 140,
+      "height": "5'6\"",
+      "weight": "120 lbs",
+      "eyes": "Violet",
+      "skin": "Pale",
+      "hair": "Silver"
+    },
+    "abilities": {
+      "str": 8,
+      "dex": 14,
+      "con": 13,
+      "int": 16,
+      "wis": 12,
+      "cha": 10
+    },
+    "proficiencies": {
+      "saves": ["int", "wis"],
+      "skills": ["arcana", "history", "investigation", "insight"]
+    },
+    "combat": {
+      "armor_base_ac": 13,
+      "speed_ft": 30,
+      "weapons": [
+        {
+          "name": "Quarterstaff",
+          "ability": "str",
+          "bonus_misc": 0,
+          "damage": "1d6 bludgeoning"
+        },
+        {
+          "name": "Dagger",
+          "ability": "dex",
+          "bonus_misc": 0,
+          "damage": "1d4+2 piercing"
+        }
+      ]
+    },
+    "spellcasting": {
+      "class": "Wizard",
+      "ability": "int",
+      "cantrips": ["Mage Hand", "Prestidigitation", "Chill Touch"],
+      "spells_known": {
+        "1": ["Mage Armor", "Magic Missile", "Shield", "Disguise Self"],
+        "2": ["Mirror Image", "Misty Step", "Blindness/Deafness"]
+      },
+      "slots": {
+        "1": 4,
+        "2": 2
+      },
+      "slots_used": {
+        "1": 0,
+        "2": 0
+      }
+    },
+    "inventory": {
+      "equipment_text": "Quarterstaff, Dagger, Spellbook, Arcane Focus, Scholar’s Pack, Robes, 15 gp",
       "currency": {
         "cp": 0,
         "sp": 0,
@@ -247,24 +407,636 @@
       }
     },
     "roleplay": {
-      "personality_traits": "I always have a plan for when things go wrong. I am incredibly slow to trust.",
-      "ideals": "Freedom. Chains are meant to be broken, as are those who would forge them.",
-      "bonds": "I'm trying to pay off an old debt I owe to a generous person who helped me when I was younger.",
-      "flaws": "When I see something valuable, I can't think about anything but how to steal it.",
+      "personality_traits": "You are eerily calm when speaking about death and decay.",
+      "ideals": "Knowledge. Understanding the forces of life and death brings control.",
+      "bonds": "Your master died under mysterious circumstances. You seek the truth.",
+      "flaws": "You often prioritize study over people’s lives.",
       "features_and_traits": [
-        "Lucky: When you roll a 1 on an attack roll, ability check, or saving throw, you can reroll the die",
-        "Brave: You have advantage on saving throws against being frightened",
-        "Halfling Nimbleness: You can move through the space of any creature that is of a size larger than yours",
-        "Sneak Attack: Once per turn, you can deal an extra 1d6 damage to one creature you hit with an attack if you have advantage on the attack roll"
+        "Darkvision: See in darkness up to 60 feet.",
+        "Keen Senses: You have proficiency in Perception.",
+        "Fey Ancestry: Advantage on saves against being charmed; magic can't put you to sleep.",
+        "Necromancy Savant: Gold and time you must spend to copy necromancy spells into your spellbook is halved.",
+        "Grim Harvest: Once per turn when you kill a creature with a spell of 1st level or higher, you regain HP equal to twice the spell's level (3x for necromancy spells)."
       ],
-      "proficiencies_and_languages": "Common, Halfling, Thieves' Cant, Thieves' Tools, Disguise Kit, Forgery Kit",
-      "allies": "The Shadow Thieves Guild, The Whisper Family",
-      "faction_name": "The Shadow Thieves",
+      "proficiencies_and_languages": "Common, Elvish, Draconic, Arcana, History, Insight, Investigation",
+      "allies": "The Obsidian Circle",
+      "faction_name": "The Ebon Sigil",
       "faction_symbol_image": null,
-      "backstory": "A former member of a notorious thieves' guild who turned to adventuring to escape their past and make amends.",
-      "character_appearance": "Shadow is small even for a halfling, with a wiry build that allows for quick, silent movement. Their brown hair is kept short and practical, and their green eyes constantly scan their surroundings with the alertness of someone who has learned to trust no one. Tan skin bears the faint scars of past encounters, and they move with the fluid grace of a natural acrobat. They prefer dark, form-fitting clothing that doesn't impede movement, and their hands are quick and dexterous. There's always a slight smile playing at their lips, as if they know something others don't.",
-      "treasure": "A mysterious key that opens a lockbox hidden somewhere in the city.",
+      "backstory": "You were once a scholar at an arcane academy, but your obsession with death magic got you expelled. Now, you chase forbidden knowledge in crypts and catacombs.",
+      "character_appearance": "You are thin and elegant, dressed in deep gray robes. A skeletal motif runs through your accessories, from your brooch to your boots.",
+      "treasure": "A withered hand suspended in amber — the key to a lost necromancer’s sanctum.",
       "character_image": null
     }
-  }
+  },
+  {
+    "identity": {
+      "class": "Cleric",
+      "level": 3,
+      "race": "Human",
+      "background": "Acolyte",
+      "alignment": "Neutral Good",
+      "age": 36,
+      "height": "5'9\"",
+      "weight": "160 lbs",
+      "eyes": "Hazel",
+      "skin": "Olive",
+      "hair": "Light Brown"
+    },
+    "abilities": {
+      "str": 10,
+      "dex": 12,
+      "con": 14,
+      "int": 8,
+      "wis": 16,
+      "cha": 13
+    },
+    "proficiencies": {
+      "saves": ["wis", "cha"],
+      "skills": ["medicine", "insight", "religion", "persuasion"]
+    },
+    "combat": {
+      "armor_base_ac": 18,
+      "speed_ft": 30,
+      "weapons": [
+        {
+          "name": "Mace",
+          "ability": "str",
+          "bonus_misc": 0,
+          "damage": "1d6 bludgeoning"
+        },
+        {
+          "name": "Light Crossbow",
+          "ability": "dex",
+          "bonus_misc": 0,
+          "damage": "1d8+1 piercing"
+        }
+      ]
+    },
+    "spellcasting": {
+      "class": "Cleric",
+      "ability": "wis",
+      "cantrips": ["Sacred Flame", "Spare the Dying", "Guidance"],
+      "spells_known": {
+        "1": ["Bless", "Cure Wounds", "Detect Magic", "Sanctuary"],
+        "2": ["Lesser Restoration", "Prayer of Healing"]
+      },
+      "slots": {
+        "1": 4,
+        "2": 2
+      },
+      "slots_used": {
+        "1": 0,
+        "2": 0
+      }
+    },
+    "inventory": {
+      "equipment_text": "Chain Mail, Shield, Mace, Light Crossbow, Holy Symbol, Priest’s Pack, Vestments, 10 gp",
+      "currency": {
+        "cp": 0,
+        "sp": 0,
+        "ep": 0,
+        "gp": 10,
+        "pp": 0
+      }
+    },
+    "roleplay": {
+      "personality_traits": "You offer comfort easily, but privately question whether faith can fix everything.",
+      "ideals": "Compassion. Healing others is both a gift and a responsibility.",
+      "bonds": "You lost someone dear and now strive to save others from the same fate.",
+      "flaws": "You struggle to reconcile your deity's will with your own moral compass.",
+      "features_and_traits": [
+        "Channel Divinity: Turn Undead — As an action, present your holy symbol and speak a prayer censuring the undead.",
+        "Disciple of Life: When you restore HP with a spell, add 2 + spell level to the amount healed.",
+        "Divine Domain: Life — Domain Spells: Bless, Cure Wounds, Lesser Restoration, Spiritual Weapon.",
+        "Spellcasting: Cast cleric spells using Wisdom.",
+        "Human Versatility: Gain one extra language and an additional skill proficiency."
+      ],
+      "proficiencies_and_languages": "Common, Celestial, Medicine, Insight, Religion, Persuasion",
+      "allies": "Temple of the Bright Path",
+      "faction_name": "The Dawnwatch",
+      "faction_symbol_image": null,
+      "backstory": "You once served as a field medic for a missionary order. You’ve seen miracles and tragedies, and now you wander to bring both hope and healing.",
+      "character_appearance": "You carry a worn holy symbol over your chest and wear a peaceful expression even amid chaos. Your armor is polished but well-used.",
+      "treasure": "A broken charm bracelet from a child you couldn’t save.",
+      "character_image": null
+    }
+  },
+  {
+    "identity": {
+      "class": "Sorcerer",
+      "level": 3,
+      "race": "Tiefling",
+      "background": "Outlander",
+      "alignment": "Chaotic Good",
+      "age": 22,
+      "height": "5'7\"",
+      "weight": "140 lbs",
+      "eyes": "Gold",
+      "skin": "Crimson",
+      "hair": "White"
+    },
+    "abilities": {
+      "str": 8,
+      "dex": 14,
+      "con": 13,
+      "int": 10,
+      "wis": 12,
+      "cha": 16
+    },
+    "proficiencies": {
+      "saves": ["con", "cha"],
+      "skills": ["arcana", "deception", "survival", "persuasion"]
+    },
+    "combat": {
+      "armor_base_ac": 13,
+      "speed_ft": 30,
+      "weapons": [
+        {
+          "name": "Dagger",
+          "ability": "dex",
+          "bonus_misc": 0,
+          "damage": "1d4+2 piercing"
+        }
+      ]
+    },
+    "spellcasting": {
+      "class": "Sorcerer",
+      "ability": "cha",
+      "cantrips": ["Fire Bolt", "Prestidigitation", "Mage Hand", "Control Flames"],
+      "spells_known": {
+        "1": ["Shield", "Magic Missile"],
+        "2": ["Scorching Ray", "Mirror Image"]
+      },
+      "slots": {
+        "1": 4,
+        "2": 2
+      },
+      "slots_used": {
+        "1": 0,
+        "2": 0
+      }
+    },
+    "inventory": {
+      "equipment_text": "Component Pouch, Dagger, Traveler’s Clothes, Explorer’s Pack, Fire-scarred journal, 12 gp",
+      "currency": {
+        "cp": 0,
+        "sp": 0,
+        "ep": 0,
+        "gp": 12,
+        "pp": 0
+      }
+    },
+    "roleplay": {
+      "personality_traits": "You are quick-tempered but fiercely loyal to those who earn your trust.",
+      "ideals": "Freedom. You won't be shackled by fate or blood.",
+      "bonds": "You search for the truth behind your draconic heritage and the fires it awakened.",
+      "flaws": "You often lash out with your magic before thinking.",
+      "features_and_traits": [
+        "Darkvision: See in dim light within 60 feet as if it were bright light.",
+        "Hellish Resistance: Resistance to fire damage.",
+        "Draconic Resilience: Your hit point maximum increases by 1 per level, and you gain natural AC of 13 + DEX modifier.",
+        "Elemental Affinity (Fire): Add CHA modifier to fire spell damage."
+      ],
+      "proficiencies_and_languages": "Common, Infernal, Draconic, Survival, Deception, Arcana",
+      "allies": "None you speak of aloud",
+      "faction_name": "The Emberblood Pact",
+      "faction_symbol_image": null,
+      "backstory": "You grew up in the wilds, hiding from villagers who feared your horns and the flames that danced at your fingertips. One day, your powers surged uncontrollably — and now you seek answers.",
+      "character_appearance": "You have crimson skin, golden eyes, and curling white horns. Heat seems to ripple in your wake when you're angry.",
+      "treasure": "A cracked dragon-scale talisman that glows faintly when you cast fire spells.",
+      "character_image": null
+    }
+  },
+  {
+    "identity": {
+      "class": "Barbarian",
+      "level": 3,
+      "race": "Half-Orc",
+      "background": "Outlander",
+      "alignment": "Chaotic Neutral",
+      "age": 27,
+      "height": "6'5\"",
+      "weight": "250 lbs",
+      "eyes": "Gray",
+      "skin": "Greenish-Gray",
+      "hair": "Black"
+    },
+    "abilities": {
+      "str": 16,
+      "dex": 12,
+      "con": 15,
+      "int": 8,
+      "wis": 13,
+      "cha": 10
+    },
+    "proficiencies": {
+      "saves": ["str", "con"],
+      "skills": ["athletics", "survival", "intimidation", "nature"]
+    },
+    "combat": {
+      "armor_base_ac": 15,
+      "speed_ft": 40,
+      "weapons": [
+        {
+          "name": "Greataxe",
+          "ability": "str",
+          "bonus_misc": 0,
+          "damage": "1d12+3 slashing"
+        },
+        {
+          "name": "Handaxe",
+          "ability": "str",
+          "bonus_misc": 0,
+          "damage": "1d6+3 slashing"
+        }
+      ]
+    },
+    "spellcasting": null,
+    "inventory": {
+      "equipment_text": "Greataxe, Handaxes (2), Explorer’s Pack, Trophy from a past kill, Traveler’s Clothes, 10 gp",
+      "currency": {
+        "cp": 0,
+        "sp": 0,
+        "ep": 0,
+        "gp": 10,
+        "pp": 0
+      }
+    },
+    "roleplay": {
+      "personality_traits": "You speak little and fight hard, preferring action to words.",
+      "ideals": "Strength. You survive by crushing your obstacles.",
+      "bonds": "You carry the guilt of those you couldn’t protect during a raid.",
+      "flaws": "You often mistake violence for the only solution.",
+      "features_and_traits": [
+        "Darkvision: See in dim light within 60 feet as if it were bright light.",
+        "Relentless Endurance: When reduced to 0 HP but not killed outright, drop to 1 HP instead (once per long rest).",
+        "Rage: You can rage up to 3 times per long rest, gaining damage bonus and resistance.",
+        "Reckless Attack: You can gain advantage on melee attacks using Strength but attack rolls against you have advantage.",
+        "Frenzy: When raging, you can make a bonus attack each turn but gain a level of exhaustion afterward."
+      ],
+      "proficiencies_and_languages": "Common, Orc, Nature, Survival, Athletics, Intimidation",
+      "allies": "None remain from your tribe",
+      "faction_name": "The Broken Fang",
+      "faction_symbol_image": null,
+      "backstory": "Once part of a nomadic tribe, you lost your kin in a brutal betrayal. Since then, rage has fueled your every battle, a fire you cannot quench.",
+      "character_appearance": "You tower over most, with a massive frame, green-gray skin, and haunted eyes. Old scars cross your chest like stories left unfinished.",
+      "treasure": "A necklace of teeth from those you've slain — and a missing one from the betrayer.",
+      "character_image": null
+    }
+  },
+  {
+    "identity": {
+      "class": "Cleric",
+      "level": 3,
+      "race": "Dwarf",
+      "background": "Acolyte",
+      "alignment": "Lawful Neutral",
+      "age": 75,
+      "height": "4'6\"",
+      "weight": "170 lbs",
+      "eyes": "Blue",
+      "skin": "Bronze",
+      "hair": "Gray"
+    },
+    "abilities": {
+      "str": 12,
+      "dex": 8,
+      "con": 15,
+      "int": 10,
+      "wis": 16,
+      "cha": 13
+    },
+    "proficiencies": {
+      "saves": ["wis", "cha"],
+      "skills": ["religion", "insight", "medicine", "intimidation"]
+    },
+    "combat": {
+      "armor_base_ac": 18,
+      "speed_ft": 25,
+      "weapons": [
+        {
+          "name": "Warhammer",
+          "ability": "str",
+          "bonus_misc": 0,
+          "damage": "1d8+1 bludgeoning"
+        },
+        {
+          "name": "Light Crossbow",
+          "ability": "dex",
+          "bonus_misc": -1,
+          "damage": "1d8 piercing"
+        }
+      ]
+    },
+    "spellcasting": {
+      "class": "Cleric",
+      "ability": "wis",
+      "cantrips": ["Thaumaturgy", "Guidance", "Light"],
+      "spells_known": {
+        "1": ["Thunderwave", "Fog Cloud", "Cure Wounds"],
+        "2": ["Shatter", "Spiritual Weapon"]
+      },
+      "slots": {
+        "1": 4,
+        "2": 2
+      },
+      "slots_used": {
+        "1": 0,
+        "2": 0
+      }
+    },
+    "inventory": {
+      "equipment_text": "Chain Mail, Shield, Warhammer, Holy Symbol, Light Crossbow, Priest’s Pack, 15 gp",
+      "currency": {
+        "cp": 0,
+        "sp": 0,
+        "ep": 0,
+        "gp": 15,
+        "pp": 0
+      }
+    },
+    "roleplay": {
+      "personality_traits": "You bellow prayers like battle cries and march like thunder.",
+      "ideals": "Order. Storms bring chaos, and only through structure can they be mastered.",
+      "bonds": "You owe your life to the god of storms — and you won’t let them down.",
+      "flaws": "You have little patience for those who doubt your faith or power.",
+      "features_and_traits": [
+        "Darkvision: See in dim light within 60 feet as if it were bright light.",
+        "Dwarven Resilience: Advantage on saves vs. poison and resistance to poison damage.",
+        "Tempest Domain: Wrath of the Storm — When hit by an attacker within 5 feet, use reaction to deal lightning or thunder damage (DEX save for half).",
+        "Channel Divinity: Destructive Wrath — Maximize lightning/thunder damage.",
+        "Domain Spells: Thunderwave, Fog Cloud, Shatter, Gust of Wind."
+      ],
+      "proficiencies_and_languages": "Common, Dwarvish, Celestial, Religion, Insight, Medicine, Intimidation",
+      "allies": "The Stormforged Order",
+      "faction_name": "The Thunderbound",
+      "faction_symbol_image": null,
+      "backstory": "You were struck by lightning as a child and lived — ever since, storms have answered your prayers. Now, you wander to carry your deity’s storm to the faithless.",
+      "character_appearance": "You are squat and broad, with a beard braided in copper rings. Static crackles around your holy symbol when you raise your voice.",
+      "treasure": "A shard of glass fused into a lightning-shaped arc — all that remains of your childhood home.",
+      "character_image": null
+    }
+  },
+  {
+    "identity": {
+      "class": "Ranger",
+      "level": 3,
+      "race": "Elf",
+      "background": "Outlander",
+      "alignment": "Neutral Good",
+      "age": 120,
+      "height": "5'8\"",
+      "weight": "130 lbs",
+      "eyes": "Emerald",
+      "skin": "Tan",
+      "hair": "Auburn"
+    },
+    "abilities": {
+      "str": 10,
+      "dex": 16,
+      "con": 14,
+      "int": 12,
+      "wis": 15,
+      "cha": 8
+    },
+    "proficiencies": {
+      "saves": ["str", "dex"],
+      "skills": ["stealth", "perception", "survival", "nature", "investigation"]
+    },
+    "combat": {
+      "armor_base_ac": 16,
+      "speed_ft": 35,
+      "weapons": [
+        {
+          "name": "Longbow",
+          "ability": "dex",
+          "bonus_misc": 0,
+          "damage": "1d8+3 piercing"
+        },
+        {
+          "name": "Shortsword",
+          "ability": "dex",
+          "bonus_misc": 0,
+          "damage": "1d6+3 piercing"
+        }
+      ]
+    },
+    "spellcasting": {
+      "class": "Ranger",
+      "ability": "wis",
+      "cantrips": [],
+      "spells_known": {
+        "1": ["Hunter's Mark", "Speak with Animals", "Cure Wounds"]
+      },
+      "slots": {
+        "1": 3
+      },
+      "slots_used": {
+        "1": 0
+      }
+    },
+    "inventory": {
+      "equipment_text": "Studded Leather Armor, Longbow, Shortswords (2), Explorer’s Pack, Quiver of 20 arrows, Hunting Trap, 18 gp",
+      "currency": {
+        "cp": 0,
+        "sp": 0,
+        "ep": 0,
+        "gp": 18,
+        "pp": 0
+      }
+    },
+    "roleplay": {
+      "personality_traits": "You speak little, but when you do, your words carry weight.",
+      "ideals": "Balance. Nature holds all truths, if you know where to look.",
+      "bonds": "You once hunted a great beast that destroyed your village. You still pursue it.",
+      "flaws": "You find it hard to trust civilization or cities.",
+      "features_and_traits": [
+        "Darkvision: See in dim light within 60 feet as if it were bright light.",
+        "Fey Ancestry: Advantage on saving throws against being charmed; magic can’t put you to sleep.",
+        "Favored Enemy: Beasts — you have advantage on Survival checks to track them and Intelligence checks to recall info.",
+        "Natural Explorer: Forest — you’re skilled at navigating and surviving in this terrain.",
+        "Hunter’s Prey: Colossus Slayer — once per turn, deal an extra 1d8 damage to a creature below its hit point maximum."
+      ],
+      "proficiencies_and_languages": "Common, Elvish, Sylvan, Nature, Survival, Perception, Stealth, Investigation",
+      "allies": "Emerald Glade Scouts",
+      "faction_name": "The Verdant Watch",
+      "faction_symbol_image": null,
+      "backstory": "You grew up in the forest, raised among rangers and druids. When darkness crept into your homeland, you became a silent guardian.",
+      "character_appearance": "You move with grace, clothed in greens and browns that blend with foliage. Your eyes pierce the gloom like twin emeralds.",
+      "treasure": "A carved wooden whistle that summons a hawk companion.",
+      "character_image": null
+    }
+  },
+  {
+    "identity": {
+      "class": "Bard",
+      "level": 3,
+      "race": "Human",
+      "background": "Entertainer",
+      "alignment": "Chaotic Good",
+      "age": 30,
+      "height": "5'11\"",
+      "weight": "165 lbs",
+      "eyes": "Hazel",
+      "skin": "Fair",
+      "hair": "Chestnut"
+    },
+    "abilities": {
+      "str": 8,
+      "dex": 14,
+      "con": 12,
+      "int": 10,
+      "wis": 13,
+      "cha": 16
+    },
+    "proficiencies": {
+      "saves": ["dex", "cha"],
+      "skills": ["performance", "persuasion", "insight", "deception", "history"]
+    },
+    "combat": {
+      "armor_base_ac": 14,
+      "speed_ft": 30,
+      "weapons": [
+        {
+          "name": "Rapier",
+          "ability": "dex",
+          "bonus_misc": 0,
+          "damage": "1d8+2 piercing"
+        },
+        {
+          "name": "Light Crossbow",
+          "ability": "dex",
+          "bonus_misc": 0,
+          "damage": "1d8+2 piercing"
+        }
+      ]
+    },
+    "spellcasting": {
+      "class": "Bard",
+      "ability": "cha",
+      "cantrips": ["Vicious Mockery", "Prestidigitation", "Mage Hand"],
+      "spells_known": {
+        "1": ["Healing Word", "Dissonant Whispers", "Detect Magic", "Tasha's Hideous Laughter"],
+        "2": ["Suggestion", "Enhance Ability"]
+      },
+      "slots": {
+        "1": 4,
+        "2": 2
+      },
+      "slots_used": {
+        "1": 0,
+        "2": 0
+      }
+    },
+    "inventory": {
+      "equipment_text": "Rapier, Light Crossbow, Entertainer’s Pack, Lute, Disguise Kit, Costume, 25 gp",
+      "currency": {
+        "cp": 0,
+        "sp": 0,
+        "ep": 0,
+        "gp": 25,
+        "pp": 0
+      }
+    },
+    "roleplay": {
+      "personality_traits": "You collect tales and songs, whether inspiring or horrific.",
+      "ideals": "Creativity. Art and story can change the world.",
+      "bonds": "You’re writing an epic about your adventures and those you travel with.",
+      "flaws": "You embellish stories too much, even when accuracy matters.",
+      "features_and_traits": [
+        "Bardic Inspiration (d6): As a bonus action, grant an ally a die to add to ability check, attack roll, or saving throw.",
+        "Jack of All Trades: Add half proficiency bonus to any ability check not already proficient.",
+        "Song of Rest: Allies who hear you during a short rest regain extra HP.",
+        "College of Lore: Gain 3 bonus proficiencies and Cutting Words — use reaction to subtract from enemy rolls.",
+        "Spellcasting: Use Charisma for bard spells. Recover expended slots on long rest."
+      ],
+      "proficiencies_and_languages": "Common, Elvish, Draconic, Lute, Disguise Kit, History, Performance, Insight, Persuasion",
+      "allies": "Wandering Minstrels’ Guild",
+      "faction_name": "The Harmonium",
+      "faction_symbol_image": null,
+      "backstory": "From taverns to royal courts, you’ve sung and deceived with equal grace. Your songs hide secrets — and sometimes truths people aren't ready to hear.",
+      "character_appearance": "You wear layered fabrics of bold colors, with a lute slung across your back and a mischievous twinkle in your eye.",
+      "treasure": "A magically bound book that transcribes any song or tale you perform.",
+      "character_image": null
+    }
+  },
+  {
+    "identity": {
+      "class": "Monk",
+      "level": 3,
+      "race": "Halfling",
+      "background": "Hermit",
+      "alignment": "Lawful Neutral",
+      "age": 34,
+      "height": "3'1\"",
+      "weight": "40 lbs",
+      "eyes": "Black",
+      "skin": "Dusky",
+      "hair": "Shaved"
+    },
+    "abilities": {
+      "str": 10,
+      "dex": 16,
+      "con": 14,
+      "int": 8,
+      "wis": 15,
+      "cha": 12
+    },
+    "proficiencies": {
+      "saves": ["str", "dex"],
+      "skills": ["stealth", "acrobatics", "insight", "religion"]
+    },
+    "combat": {
+      "armor_base_ac": 16,
+      "speed_ft": 35,
+      "weapons": [
+        {
+          "name": "Shortsword",
+          "ability": "dex",
+          "bonus_misc": 0,
+          "damage": "1d6+3 piercing"
+        },
+        {
+          "name": "Unarmed Strike",
+          "ability": "dex",
+          "bonus_misc": 0,
+          "damage": "1d4+3 bludgeoning"
+        }
+      ]
+    },
+    "spellcasting": null,
+    "inventory": {
+      "equipment_text": "Shortsword, Dungeoneer’s Pack, Herbalism Kit, 10 gp, Simple Robes, Prayer Beads, Scroll of Shadows",
+      "currency": {
+        "cp": 0,
+        "sp": 0,
+        "ep": 0,
+        "gp": 10,
+        "pp": 0
+      }
+    },
+    "roleplay": {
+      "personality_traits": "You are calm, quiet, and unnervingly still — even your shadow seems detached.",
+      "ideals": "Discipline. Control over self leads to control over shadow.",
+      "bonds": "You once glimpsed a terrible truth in the darkness and seek its source.",
+      "flaws": "You sometimes disappear without telling your companions why.",
+      "features_and_traits": [
+        "Lucky: When you roll a 1 on the d20, you can reroll the die.",
+        "Brave: Advantage on saving throws against being frightened.",
+        "Unarmored Defense: AC = 10 + DEX + WIS.",
+        "Martial Arts: Use DEX for monk weapons, unarmed strikes do 1d4, bonus unarmed attack as bonus action.",
+        "Ki (3 points): Flurry of Blows, Patient Defense, Step of the Wind.",
+        "Shadow Arts: Cast Darkness, Darkvision, Pass without Trace, or Silence by spending 2 ki points."
+      ],
+      "proficiencies_and_languages": "Common, Halfling, Herbalism Kit, Religion, Insight, Stealth, Acrobatics",
+      "allies": "Silent Steps Monastery",
+      "faction_name": "The Veiled Path",
+      "faction_symbol_image": null,
+      "backstory": "You were raised in a monastery hidden in a cavern where the shadows speak. Trained to blend with darkness, your path now leads beyond the monastery walls.",
+      "character_appearance": "You move like smoke and vanish like mist. Your shadow seems a second self — silent, aware, and perhaps not entirely yours.",
+      "treasure": "A scroll said to contain a shadow creature’s true name — unread until the time is right.",
+      "character_image": null
+    }
+  }   
 ]
+  
