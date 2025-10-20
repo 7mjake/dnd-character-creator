@@ -39,6 +39,22 @@ export async function fillCharacterSheetPdf(
     // 🔧 Load PDF and set NeedAppearances to preserve original styling
     console.log('🔧 Loading PDF and preserving original field appearances');
     const pdfDoc = await PDFDocument.load(existingPdfBytes);
+    
+    // Check if character has spells and remove page 3 if not
+    const characterHasSpells = hasSpells(characterData);
+    if (!characterHasSpells) {
+      console.log('🔧 Character has no spells, removing page 3 (spell page)');
+      const pages = pdfDoc.getPages();
+      if (pages.length >= 3) {
+        pdfDoc.removePage(2); // Remove page 3 (0-indexed, so page 3 is index 2)
+        console.log('✅ Removed page 3 - character sheet now has', pages.length - 1, 'pages');
+      } else {
+        console.log('⚠️ PDF has fewer than 3 pages, skipping page removal');
+      }
+    } else {
+      console.log('✅ Character has spells, keeping all pages');
+    }
+    
     const form = pdfDoc.getForm();
 
     // 🔧 Ask viewers to repaint using existing field styling
@@ -159,6 +175,35 @@ export async function fillCharacterSheetPdf(
       error: err instanceof Error ? err.message : 'Failed to generate PDF'
     };
   }
+}
+
+/**
+ * Checks if a character has any spells (cantrips or spells known)
+ * @param characterData - The character data to check
+ * @returns True if the character has any spells, false otherwise
+ */
+export function hasSpells(characterData: InputModel): boolean {
+  // Check if character has spellcasting ability
+  if (!characterData.spellcasting) {
+    return false;
+  }
+
+  // Check for cantrips
+  if (characterData.spellcasting.cantrips && characterData.spellcasting.cantrips.length > 0) {
+    return true;
+  }
+
+  // Check for spells known at any level
+  if (characterData.spellcasting.spells_known) {
+    for (const level in characterData.spellcasting.spells_known) {
+      const spells = characterData.spellcasting.spells_known[level];
+      if (Array.isArray(spells) && spells.length > 0) {
+        return true;
+      }
+    }
+  }
+
+  return false;
 }
 
 /**

@@ -2,7 +2,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { InputModel, toPdfFields } from '../pdf-filler/field_map';
-import { fillCharacterSheetPdf, validateCharacterData } from '../pdf-filler/pdfFiller';
+import { fillCharacterSheetPdf, validateCharacterData, hasSpells } from '../pdf-filler/pdfFiller';
 
 
 const CharacterSheetFiller: React.FC = () => {
@@ -487,6 +487,14 @@ const CharacterSheetFiller: React.FC = () => {
                     {char.spellcasting && (
                       <div className="mt-2 text-sm text-gray-600">
                         <p><strong>Spellcasting:</strong> {char.spellcasting.class} ({char.spellcasting.ability ? char.spellcasting.ability.charAt(0).toUpperCase() + char.spellcasting.ability.slice(1) : ''})</p>
+                        <div className="mt-1 p-1 bg-blue-50 border border-blue-200 rounded text-xs text-blue-700">
+                          📄 {hasSpells(char) ? '3 pages' : '2 pages (no spells)'}
+                        </div>
+                      </div>
+                    )}
+                    {!char.spellcasting && (
+                      <div className="mt-2 p-1 bg-yellow-50 border border-yellow-200 rounded text-xs text-yellow-700">
+                        📄 2 pages (no spells)
                       </div>
                     )}
                   </div>
@@ -569,6 +577,15 @@ const CharacterSheetFiller: React.FC = () => {
                         </div>
                       )}
                     </div>
+                    <div className="mt-2 p-2 bg-blue-50 border border-blue-200 rounded text-xs text-blue-700">
+                      📄 <strong>PDF Pages:</strong> {hasSpells(characterData) ? 'All 3 pages will be included (spell page included)' : 'Only 2 pages will be included (spell page removed)'}
+                    </div>
+                  </div>
+                )}
+
+                {!characterData.spellcasting && (
+                  <div className="mt-2 p-2 bg-yellow-50 border border-yellow-200 rounded text-xs text-yellow-700">
+                    📄 <strong>PDF Pages:</strong> Only 2 pages will be included (spell page removed - character has no spells)
                   </div>
                 )}
 
