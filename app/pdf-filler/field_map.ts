@@ -12,7 +12,7 @@ export type Skill =
 
 export interface InputModel {
   identity: {
-    name: string;
+    name?: string;
     class: string;
     level: number;
     race: string;

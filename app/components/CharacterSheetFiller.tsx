@@ -183,7 +183,7 @@ const CharacterSheetFiller: React.FC = () => {
           
           if (result.success && result.blob) {
             pdfBlobs.push(result.blob);
-            const safeName = character.identity.name.replace(/[^a-zA-Z0-9]/g, '_');
+            const safeName = character.identity.name?.replace(/[^a-zA-Z0-9]/g, '_') || 'unnamed_character';
             filenames.push(`${character.identity.class}_Level${character.identity.level}.pdf`);
           } else {
             setError(`Failed to generate PDF for ${character.identity.class}_Level${character.identity.level}: ${result.error || 'Unknown error'}`);
@@ -403,7 +403,7 @@ const CharacterSheetFiller: React.FC = () => {
 
             {characterData && (
               <div className="mb-4 p-3 bg-green-100 border border-green-400 text-green-700 rounded">
-                ✓ Character data loaded successfully: {characterData.identity.name} (Level {characterData.identity.level} {characterData.identity.class})
+                ✓ Character data loaded successfully: {characterData.identity.name || 'Unnamed Character'} (Level {characterData.identity.level} {characterData.identity.class})
               </div>
             )}
 
@@ -456,7 +456,7 @@ const CharacterSheetFiller: React.FC = () => {
                 {characterDataArray.map((char, index) => (
                   <div key={index} className="border border-gray-200 rounded-lg p-4">
                     <h3 className="font-semibold text-gray-800 mb-2">
-                      {index + 1}. {char.identity.name}
+                      {index + 1}. {char.identity.name || 'Unnamed Character'}
                     </h3>
                     <div className="grid grid-cols-2 gap-4 text-sm text-gray-600">
                       <div>
@@ -493,7 +493,7 @@ const CharacterSheetFiller: React.FC = () => {
                   <div>
                     <h3 className="font-semibold text-gray-800">Basic Info</h3>
                     <div className="text-sm text-gray-600 space-y-1">
-                      <p><strong>Name:</strong> {characterData.identity.name}</p>
+                      <p><strong>Name:</strong> {characterData.identity.name || 'Not specified'}</p>
                       <p><strong>Class:</strong> {characterData.identity.class} (Level {characterData.identity.level})</p>
                       <p><strong>Race:</strong> {characterData.identity.race}</p>
                       <p><strong>Background:</strong> {characterData.identity.background}</p>

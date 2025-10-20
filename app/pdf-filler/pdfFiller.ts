@@ -169,10 +169,10 @@ export async function fillCharacterSheetPdf(
 export function validateCharacterData(data: any): { valid: boolean; error?: string } {
   try {
     // Basic validation for required fields
-    if (!data.identity?.name || !data.identity?.class || !data.abilities) {
+    if (!data.identity?.class || !data.abilities) {
       return {
         valid: false,
-        error: 'Invalid character data: missing required fields (identity.name, identity.class, abilities)'
+        error: 'Invalid character data: missing required fields (identity.class, abilities)'
       };
     }
     

@@ -71,7 +71,7 @@
           "examples": ["Black", "Silver", "Brown", "Blonde", "Red", "White", "Gray"]
         }
       },
-      "required": ["name", "class", "level", "race", "background", "alignment"]
+      "required": ["class", "level", "race", "background", "alignment"]
     },
     "abilities": {
       "type": "object",
@@ -425,9 +425,9 @@
           "type": "string",
           "description": "Detailed physical description",
           "examples": [
-            "Thorin stands at a typical dwarven height with a broad, muscular build that speaks to years of military training. Their black beard is braided with small metal rings and reaches their chest, while their brown eyes hold the steady gaze of a seasoned warrior.",
-            "Elara possesses the ethereal beauty typical of their elven heritage, with silver hair that seems to shimmer with starlight and pale skin that glows softly in moonlight.",
-            "Shadow is small even for a halfling, with a wiry build that allows for quick, silent movement. Their brown hair is kept short and practical, and their green eyes constantly scan their surroundings."
+            "You stand at a typical dwarven height with a broad, muscular build that speaks to years of military training. Your black beard is braided with small metal rings and reaches your chest, while your brown eyes hold the steady gaze of a seasoned warrior.",
+            "You possess the ethereal beauty typical of your elven heritage, with silver hair that seems to shimmer with starlight and pale skin that glows softly in moonlight.",
+            "You are small even for a halfling, with a wiry build that allows for quick, silent movement. Your brown hair is kept short and practical, and your green eyes constantly scan your surroundings."
           ]
         },
         "treasure": {
@@ -450,7 +450,6 @@
   "examples": [
     {
       "identity": {
-        "name": "River Stone",
         "class": "Fighter",
         "level": 3,
         "race": "Dwarf",
@@ -518,7 +517,7 @@
         "faction_name": "The Stoneguard",
         "faction_symbol_image": null,
         "backstory": "A veteran soldier who served in the Stoneguard Regiment, defending the mountain passes from orc raids.",
-        "character_appearance": "River stands at a typical dwarven height with a broad, muscular build that speaks to years of military training. Their black beard is braided with small metal rings and reaches their chest, while their brown eyes hold the steady gaze of a seasoned warrior.",
+        "character_appearance": "You stand at a typical dwarven height with a broad, muscular build that speaks to years of military training. Your black beard is braided with small metal rings and reaches your chest, while your brown eyes hold the steady gaze of a seasoned warrior.",
         "treasure": "A family heirloom warhammer passed down through generations.",
         "character_image": null
       }
