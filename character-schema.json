@@ -11,7 +11,7 @@
         "name": {
           "type": "string",
           "description": "Character's full name",
-          "examples": ["Thorin Ironbeard", "Elara Starweaver", "Shadow Whisper"]
+          "examples": ["Thorin Ironbeard", "Elara Starweaver", "Shadow Whisper", "River Stone", "Ash Ember"]
         },
         "class": {
           "type": "string",
@@ -425,8 +425,8 @@
           "type": "string",
           "description": "Detailed physical description",
           "examples": [
-            "Thorin stands at a typical dwarven height with a broad, muscular build that speaks to years of military training. His black beard is braided with small metal rings and reaches his chest, while his brown eyes hold the steady gaze of a seasoned warrior.",
-            "Elara possesses the ethereal beauty typical of her elven heritage, with silver hair that seems to shimmer with starlight and pale skin that glows softly in moonlight.",
+            "Thorin stands at a typical dwarven height with a broad, muscular build that speaks to years of military training. Their black beard is braided with small metal rings and reaches their chest, while their brown eyes hold the steady gaze of a seasoned warrior.",
+            "Elara possesses the ethereal beauty typical of their elven heritage, with silver hair that seems to shimmer with starlight and pale skin that glows softly in moonlight.",
             "Shadow is small even for a halfling, with a wiry build that allows for quick, silent movement. Their brown hair is kept short and practical, and their green eyes constantly scan their surroundings."
           ]
         },
@@ -450,7 +450,7 @@
   "examples": [
     {
       "identity": {
-        "name": "Thorin Ironbeard",
+        "name": "River Stone",
         "class": "Fighter",
         "level": 3,
         "race": "Dwarf",
@@ -518,7 +518,7 @@
         "faction_name": "The Stoneguard",
         "faction_symbol_image": null,
         "backstory": "A veteran soldier who served in the Stoneguard Regiment, defending the mountain passes from orc raids.",
-        "character_appearance": "Thorin stands at a typical dwarven height with a broad, muscular build that speaks to years of military training. His black beard is braided with small metal rings and reaches his chest, while his brown eyes hold the steady gaze of a seasoned warrior.",
+        "character_appearance": "River stands at a typical dwarven height with a broad, muscular build that speaks to years of military training. Their black beard is braided with small metal rings and reaches their chest, while their brown eyes hold the steady gaze of a seasoned warrior.",
         "treasure": "A family heirloom warhammer passed down through generations.",
         "character_image": null
       }
