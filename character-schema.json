@@ -372,9 +372,18 @@
           "type": ["string", "array"],
           "description": "Racial and class features",
           "examples": [
-            ["Dwarven Resilience: Advantage on saves vs poison", "Stonecunning: Double proficiency on History checks related to stonework"],
-            ["Arcane Recovery: Once per day when you finish a short rest, you can recover some of your spell slots", "Spell Mastery: You have achieved such mastery over certain spells that you can cast them at will"],
-            ["Lucky: When you roll a 1 on an attack roll, ability check, or saving throw, you can reroll the die", "Brave: You have advantage on saving throws against being frightened"]
+            [
+              "Dwarven Resilience: You have advantage on saving throws against poison, and you have resistance against poison damage.",
+              "Stonecunning: Whenever you make an Intelligence (History) check related to the origin of stonework, you are considered proficient in the History skill and add double your proficiency bonus to the check, instead of your normal proficiency bonus."
+            ],
+            [
+              "Arcane Recovery: You have learned to regain some of your magical energy by studying your spellbook. Once per day when you finish a short rest, you can choose expended spell slots to recover. The spell slots can have a combined level that is equal to or less than half your wizard level (rounded up), and none of the slots can be 6th level or higher.",
+              "Spell Mastery: You have achieved such mastery over certain spells that you can cast them at will. Choose a 1st-level wizard spell and a 2nd-level wizard spell that are in your spellbook. You can cast those spells at their lowest level without expending a spell slot when you have them prepared."
+            ],
+            [
+              "Lucky: When you roll a 1 on an attack roll, ability check, or saving throw, you can reroll the die and must use the new roll.",
+              "Brave: You have advantage on saving throws against being frightened."
+            ]
           ]
         },
         "additional_features_traits": {
@@ -509,8 +518,8 @@
         "bonds": "I would still lay down my life for the people I served with.",
         "flaws": "I have little respect for anyone who is not a proven warrior.",
         "features_and_traits": [
-          "Dwarven Resilience: Advantage on saves vs poison",
-          "Stonecunning: Double proficiency on History checks related to stonework"
+          "Dwarven Resilience: You have advantage on saving throws against poison, and you have resistance against poison damage.",
+          "Stonecunning: Whenever you make an Intelligence (History) check related to the origin of stonework, you are considered proficient in the History skill and add double your proficiency bonus to the check, instead of your normal proficiency bonus."
         ],
         "proficiencies_and_languages": "Common, Dwarvish, Smith's Tools, Mason's Tools",
         "allies": "The Ironbeard Clan, The Stoneguard Regiment",
