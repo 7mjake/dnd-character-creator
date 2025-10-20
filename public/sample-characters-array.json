@@ -48,7 +48,7 @@
       "ability": "cha",
       "cantrips": [],
       "spells_known": {
-        "1": ["Divine Favor", "Hunter's Mark", "Protection from Evil and Good"]
+        "1": ["Bless", "Cure Wounds", "Detect Magic", "Protection from Evil and Good"]
       },
       "slots": {
         "1": 3
@@ -73,11 +73,14 @@
       "bonds": "Your faith compels you to destroy all who walk in darkness.",
       "flaws": "You often act without mercy, letting vengeance cloud compassion.",
       "features_and_traits": [
-        "Divine Sense: As an action, you can detect good and evil until the end of your next turn. You can use this feature 4 times per long rest.",
-        "Lay on Hands: You have a healing pool of 15 HP that replenishes after a long rest. You can use it to heal the wounded or cure disease/poison.",
-        "Fighting Style: Defense — While you are wearing armor, you gain a +1 bonus to AC.",
-        "Divine Smite: When you hit a creature with a melee weapon attack, you can expend one spell slot to deal radiant damage in addition to the weapon’s damage.",
-        "Oath of Vengeance Features: Abjure Enemy and Vow of Enmity — special actions to hinder or single out foes."
+        "Divine Sense: As an action, you can detect good and evil until the end of your next turn. You can use this feature 2 times per long rest (1 + Charisma modifier).",
+        "Lay on Hands: You have a healing pool of 15 HP (5 × Paladin level) that replenishes after a long rest. You can use it to heal the wounded or cure disease/poison.",
+        "Fighting Style: Dueling — When you are wielding a melee weapon in one hand and no other weapons, you gain a +2 bonus to damage rolls with that weapon.",
+        "Divine Smite: When you hit a creature with a melee weapon attack, you can expend one spell slot to deal radiant damage in addition to the weapon's damage.",
+        "Divine Health: You are immune to disease.",
+        "Channel Divinity: You can use your Channel Divinity to fuel magical effects. You start with 1 use, regaining expended uses on a short or long rest.",
+        "Oath of Vengeance: Abjure Enemy — As an action, present your holy symbol and speak a prayer of denunciation. Choose one creature within 60 feet. If the creature can see or hear you, it must make a Wisdom saving throw. On a failed save, it is turned for 1 minute or until it takes damage.",
+        "Oath of Vengeance: Vow of Enmity — As a bonus action, you can utter a vow of enmity against a creature you can see within 10 feet. For 1 minute, you have advantage on attack rolls against that creature. You can use this feature once per short or long rest."
       ],
       "proficiencies_and_languages": "Common, Celestial, Religion, Insight, Athletics, Intimidation",
       "allies": "Clergy of the Radiant Flame",
@@ -152,9 +155,12 @@
       "features_and_traits": [
         "Dwarven Resilience: You have advantage on saving throws against poison, and resistance against poison damage.",
         "Stonecunning: When making an Intelligence (History) check related to stonework, you are considered proficient and add double proficiency bonus.",
+        "Dwarven Combat Training: You have proficiency with the battleaxe, handaxe, light hammer, and warhammer.",
+        "Tool Proficiency: You have proficiency with one type of artisan's tools (Smith's Tools).",
+        "Fighting Style: Great Weapon Fighting — When you roll a 1 or 2 on a damage die for an attack you make with a melee weapon that you are wielding with two hands, you can reroll the die and must use the new roll.",
         "Second Wind: As a bonus action, regain 1d10 + 3 HP once per short rest.",
         "Action Surge: Take an additional action on your turn, once per short rest.",
-        "Improved Critical: Your weapon attacks score a critical hit on a roll of 19 or 20."
+        "Champion Archetype: Improved Critical — Your weapon attacks score a critical hit on a roll of 19 or 20."
       ],
       "proficiencies_and_languages": "Common, Dwarvish, Dice Set, Smith's Tools, Vehicles (Land)",
       "allies": "Stoneguard Regiment",
@@ -219,7 +225,6 @@
         "2": ["Mirror Image", "Scorching Ray"]
       },
       "slots": {
-        "1": 0,
         "2": 2
       },
       "slots_used": {
@@ -243,9 +248,11 @@
       "flaws": "You can't help but show off your magic, even when it draws suspicion.",
       "features_and_traits": [
         "Darkvision: You can see in darkness up to 60 feet.",
-        "Fey Ancestry: You have advantage on saving throws against being charmed, and magic can’t put you to sleep.",
+        "Fey Ancestry: You have advantage on saving throws against being charmed, and magic can't put you to sleep.",
+        "Half-Elf Versatility: You gain proficiency in two skills of your choice (Deception, Sleight of Hand).",
+        "Fiend Patron: Dark One's Blessing — When you reduce a hostile creature to 0 hit points, you gain temporary hit points equal to your Charisma modifier + your warlock level (3 + 3 = 6).",
         "Pact Magic: You can cast warlock spells using Charisma. Your spell slots are regained on a short rest.",
-        "Fiendish Resilience: When you reduce a hostile creature to 0 HP, gain temporary hit points equal to your Charisma modifier + your warlock level.",
+        "Pact Boon: Pact of the Blade — You can use your action to create a pact weapon in your empty hand. You can choose the form each time you create it.",
         "Eldritch Invocations: Agonizing Blast (add CHA to Eldritch Blast damage), Mask of Many Faces (cast Disguise Self at will)."
       ],
       "proficiencies_and_languages": "Common, Elvish, Infernal, Disguise Kit, Forgery Kit",
@@ -322,8 +329,11 @@
         "Lucky: When you roll a 1 on the d20, you can reroll and must use the new roll.",
         "Brave: You have advantage on saving throws against being frightened.",
         "Nimbleness: You can move through the space of any creature that is of a size larger than yours.",
+        "Sneak Attack: Once per turn, you can deal an extra 1d6 damage when you hit with a weapon attack and have advantage on the attack roll, or when the target is within 5 feet of an ally.",
+        "Thieves' Cant: You know thieves' cant, a secret mix of dialect, jargon, and code that allows you to hide messages in seemingly normal conversation.",
+        "Expertise: You gain expertise with two skills (Stealth, Sleight of Hand), doubling your proficiency bonus for ability checks with those skills.",
         "Cunning Action: You can Dash, Disengage, or Hide as a bonus action.",
-        "Assassinate: You have advantage on attack rolls against surprised creatures, and hits against surprised targets are critical."
+        "Assassin Archetype: Assassinate — You have advantage on attack rolls against any creature that hasn't taken a turn in the combat yet. In addition, any hit you score against a creature that is surprised is a critical hit."
       ],
       "proficiencies_and_languages": "Common, Halfling, Thieves' Cant, Thieves’ Tools, Disguise Kit",
       "allies": "The Silent Knives Thieves’ Guild",
@@ -384,8 +394,8 @@
       "ability": "int",
       "cantrips": ["Mage Hand", "Prestidigitation", "Chill Touch"],
       "spells_known": {
-        "1": ["Mage Armor", "Magic Missile", "Shield", "Disguise Self"],
-        "2": ["Mirror Image", "Misty Step", "Blindness/Deafness"]
+        "1": ["Mage Armor", "Magic Missile", "Shield", "Disguise Self", "Detect Magic", "Charm Person", "Sleep", "Burning Hands", "Thunderwave", "Witch Bolt"],
+        "2": ["Mirror Image", "Misty Step", "Blindness/Deafness", "Suggestion"]
       },
       "slots": {
         "1": 4,
@@ -415,8 +425,11 @@
         "Darkvision: See in darkness up to 60 feet.",
         "Keen Senses: You have proficiency in Perception.",
         "Fey Ancestry: Advantage on saves against being charmed; magic can't put you to sleep.",
-        "Necromancy Savant: Gold and time you must spend to copy necromancy spells into your spellbook is halved.",
-        "Grim Harvest: Once per turn when you kill a creature with a spell of 1st level or higher, you regain HP equal to twice the spell's level (3x for necromancy spells)."
+        "Spellcasting: You can cast wizard spells using Intelligence. You prepare spells daily from your spellbook.",
+        "Ritual Casting: You can cast any wizard spell you know as a ritual if that spell has the ritual tag.",
+        "Arcane Recovery: Once per day when you finish a short rest, you can recover expended spell slots with a total level equal to half your wizard level (rounded up).",
+        "Necromancy School: Necromancy Savant — Gold and time you must spend to copy necromancy spells into your spellbook is halved.",
+        "Necromancy School: Grim Harvest — Once per turn when you kill a creature with a spell of 1st level or higher, you regain HP equal to twice the spell's level (3x for necromancy spells)."
       ],
       "proficiencies_and_languages": "Common, Elvish, Draconic, Arcana, History, Insight, Investigation",
       "allies": "The Obsidian Circle",
@@ -477,8 +490,8 @@
       "ability": "wis",
       "cantrips": ["Sacred Flame", "Spare the Dying", "Guidance"],
       "spells_known": {
-        "1": ["Bless", "Cure Wounds", "Detect Magic", "Sanctuary"],
-        "2": ["Lesser Restoration", "Prayer of Healing"]
+        "1": ["Bless", "Cure Wounds", "Detect Magic", "Sanctuary", "Command", "Healing Word"],
+        "2": ["Lesser Restoration", "Prayer of Healing", "Aid", "Spiritual Weapon"]
       },
       "slots": {
         "1": 4,
@@ -505,10 +518,12 @@
       "bonds": "You lost someone dear and now strive to save others from the same fate.",
       "flaws": "You struggle to reconcile your deity's will with your own moral compass.",
       "features_and_traits": [
+        "Spellcasting: You can cast cleric spells using Wisdom. You prepare spells daily from the cleric spell list.",
+        "Ritual Casting: You can cast any cleric spell you know as a ritual if that spell has the ritual tag.",
+        "Channel Divinity: You can use your Channel Divinity to fuel magical effects. You start with 1 use, regaining expended uses on a short or long rest.",
         "Channel Divinity: Turn Undead — As an action, present your holy symbol and speak a prayer censuring the undead.",
-        "Disciple of Life: When you restore HP with a spell, add 2 + spell level to the amount healed.",
-        "Divine Domain: Life — Domain Spells: Bless, Cure Wounds, Lesser Restoration, Spiritual Weapon.",
-        "Spellcasting: Cast cleric spells using Wisdom.",
+        "Life Domain: Disciple of Life — When you restore HP with a spell, add 2 + spell level to the amount healed.",
+        "Life Domain: Domain Spells — Bless, Cure Wounds, Lesser Restoration, Prayer of Healing, Aid, Spiritual Weapon.",
         "Human Versatility: Gain one extra language and an additional skill proficiency."
       ],
       "proficiencies_and_languages": "Common, Celestial, Medicine, Insight, Religion, Persuasion",
@@ -594,8 +609,12 @@
       "features_and_traits": [
         "Darkvision: See in dim light within 60 feet as if it were bright light.",
         "Hellish Resistance: Resistance to fire damage.",
-        "Draconic Resilience: Your hit point maximum increases by 1 per level, and you gain natural AC of 13 + DEX modifier.",
-        "Elemental Affinity (Fire): Add CHA modifier to fire spell damage."
+        "Infernal Legacy: You know the thaumaturgy cantrip. At 3rd level, you can cast hellish rebuke as a 2nd-level spell once per long rest.",
+        "Spellcasting: You can cast sorcerer spells using Charisma.",
+        "Sorcery Points: You have 3 sorcery points. You can spend these points to create spell slots or use metamagic.",
+        "Draconic Bloodline: Draconic Resilience — Your hit point maximum increases by 1 per level, and you gain natural AC of 13 + DEX modifier.",
+        "Draconic Bloodline: Elemental Affinity (Fire) — Add CHA modifier to fire spell damage.",
+        "Metamagic: You know 2 metamagic options. Choose from: Careful Spell, Distant Spell, Empowered Spell, Extended Spell, Heightened Spell, Quickened Spell, Subtle Spell, Twinned Spell."
       ],
       "proficiencies_and_languages": "Common, Infernal, Draconic, Survival, Deception, Arcana",
       "allies": "None you speak of aloud",
@@ -670,9 +689,12 @@
       "features_and_traits": [
         "Darkvision: See in dim light within 60 feet as if it were bright light.",
         "Relentless Endurance: When reduced to 0 HP but not killed outright, drop to 1 HP instead (once per long rest).",
-        "Rage: You can rage up to 3 times per long rest, gaining damage bonus and resistance.",
+        "Savage Attacks: When you score a critical hit with a melee weapon attack, you can roll one of the weapon's damage dice one additional time and add it to the extra damage.",
+        "Rage: You can rage 3 times per long rest. While raging, you gain +2 damage on melee weapon attacks using Strength, resistance to bludgeoning, piercing, and slashing damage, and advantage on Strength checks and saves.",
+        "Unarmored Defense: While not wearing armor, your AC equals 10 + DEX modifier + CON modifier.",
         "Reckless Attack: You can gain advantage on melee attacks using Strength but attack rolls against you have advantage.",
-        "Frenzy: When raging, you can make a bonus attack each turn but gain a level of exhaustion afterward."
+        "Danger Sense: You have advantage on Dexterity saving throws against effects you can see.",
+        "Berserker Path: Frenzy — When raging, you can make a bonus attack each turn but gain a level of exhaustion afterward."
       ],
       "proficiencies_and_languages": "Common, Orc, Nature, Survival, Athletics, Intimidation",
       "allies": "None remain from your tribe",
@@ -733,8 +755,8 @@
       "ability": "wis",
       "cantrips": ["Thaumaturgy", "Guidance", "Light"],
       "spells_known": {
-        "1": ["Thunderwave", "Fog Cloud", "Cure Wounds"],
-        "2": ["Shatter", "Spiritual Weapon"]
+        "1": ["Thunderwave", "Fog Cloud", "Cure Wounds", "Command", "Detect Magic", "Sanctuary"],
+        "2": ["Shatter", "Spiritual Weapon", "Lesser Restoration", "Prayer of Healing"]
       },
       "slots": {
         "1": 4,
@@ -763,9 +785,14 @@
       "features_and_traits": [
         "Darkvision: See in dim light within 60 feet as if it were bright light.",
         "Dwarven Resilience: Advantage on saves vs. poison and resistance to poison damage.",
+        "Stonecunning: When making an Intelligence (History) check related to stonework, you are considered proficient and add double proficiency bonus.",
+        "Spellcasting: You can cast cleric spells using Wisdom. You prepare spells daily from the cleric spell list.",
+        "Ritual Casting: You can cast any cleric spell you know as a ritual if that spell has the ritual tag.",
+        "Channel Divinity: You can use your Channel Divinity to fuel magical effects. You start with 1 use, regaining expended uses on a short or long rest.",
+        "Channel Divinity: Turn Undead — As an action, present your holy symbol and speak a prayer censuring the undead.",
         "Tempest Domain: Wrath of the Storm — When hit by an attacker within 5 feet, use reaction to deal lightning or thunder damage (DEX save for half).",
-        "Channel Divinity: Destructive Wrath — Maximize lightning/thunder damage.",
-        "Domain Spells: Thunderwave, Fog Cloud, Shatter, Gust of Wind."
+        "Tempest Domain: Channel Divinity: Destructive Wrath — Maximize lightning/thunder damage.",
+        "Tempest Domain: Domain Spells — Thunderwave, Fog Cloud, Shatter, Spiritual Weapon, Gust of Wind, Call Lightning."
       ],
       "proficiencies_and_languages": "Common, Dwarvish, Celestial, Religion, Insight, Medicine, Intimidation",
       "allies": "The Stormforged Order",
@@ -852,10 +879,13 @@
       "flaws": "You find it hard to trust civilization or cities.",
       "features_and_traits": [
         "Darkvision: See in dim light within 60 feet as if it were bright light.",
-        "Fey Ancestry: Advantage on saving throws against being charmed; magic can’t put you to sleep.",
+        "Fey Ancestry: Advantage on saving throws against being charmed; magic can't put you to sleep.",
+        "Keen Senses: You have proficiency in Perception.",
         "Favored Enemy: Beasts — you have advantage on Survival checks to track them and Intelligence checks to recall info.",
-        "Natural Explorer: Forest — you’re skilled at navigating and surviving in this terrain.",
-        "Hunter’s Prey: Colossus Slayer — once per turn, deal an extra 1d8 damage to a creature below its hit point maximum."
+        "Natural Explorer: Forest — you're skilled at navigating and surviving in this terrain.",
+        "Fighting Style: Archery — You gain a +2 bonus to attack rolls you make with ranged weapons.",
+        "Spellcasting: You can cast ranger spells using Wisdom.",
+        "Hunter Archetype: Hunter's Prey: Colossus Slayer — once per turn, deal an extra 1d8 damage to a creature below its hit point maximum."
       ],
       "proficiencies_and_languages": "Common, Elvish, Sylvan, Nature, Survival, Perception, Stealth, Investigation",
       "allies": "Emerald Glade Scouts",
@@ -944,11 +974,13 @@
       "bonds": "You’re writing an epic about your adventures and those you travel with.",
       "flaws": "You embellish stories too much, even when accuracy matters.",
       "features_and_traits": [
-        "Bardic Inspiration (d6): As a bonus action, grant an ally a die to add to ability check, attack roll, or saving throw.",
+        "Bardic Inspiration (d6): As a bonus action, grant an ally a die to add to ability check, attack roll, or saving throw. You can use this feature 3 times per long rest.",
         "Jack of All Trades: Add half proficiency bonus to any ability check not already proficient.",
         "Song of Rest: Allies who hear you during a short rest regain extra HP.",
-        "College of Lore: Gain 3 bonus proficiencies and Cutting Words — use reaction to subtract from enemy rolls.",
-        "Spellcasting: Use Charisma for bard spells. Recover expended slots on long rest."
+        "Spellcasting: You can cast bard spells using Charisma.",
+        "College of Lore: Additional Magical Secrets — You learn 2 spells from any class.",
+        "College of Lore: Cutting Words — Use reaction to subtract from enemy rolls.",
+        "College of Lore: Bonus Proficiencies — You gain proficiency with 3 skills of your choice (History, Insight, Persuasion)."
       ],
       "proficiencies_and_languages": "Common, Elvish, Draconic, Lute, Disguise Kit, History, Performance, Insight, Persuasion",
       "allies": "Wandering Minstrels’ Guild",
@@ -1023,9 +1055,11 @@
       "features_and_traits": [
         "Lucky: When you roll a 1 on the d20, you can reroll the die.",
         "Brave: Advantage on saving throws against being frightened.",
+        "Halfling Nimbleness: You can move through the space of any creature that is of a size larger than yours.",
         "Unarmored Defense: AC = 10 + DEX + WIS.",
         "Martial Arts: Use DEX for monk weapons, unarmed strikes do 1d4, bonus unarmed attack as bonus action.",
         "Ki (3 points): Flurry of Blows, Patient Defense, Step of the Wind.",
+        "Deflect Missiles: You can use your reaction to deflect or catch missiles when you are hit by a ranged weapon attack.",
         "Shadow Arts: Cast Darkness, Darkvision, Pass without Trace, or Silence by spending 2 ki points."
       ],
       "proficiencies_and_languages": "Common, Halfling, Herbalism Kit, Religion, Insight, Stealth, Acrobatics",
