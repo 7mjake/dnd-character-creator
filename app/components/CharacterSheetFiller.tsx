@@ -3,6 +3,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { InputModel, toPdfFields } from '../pdf-filler/field_map';
 import { fillCharacterSheetPdf, validateCharacterData, hasSpells } from '../pdf-filler/pdfFiller';
+import SpellStatistics from './SpellStatistics';
 
 
 const CharacterSheetFiller: React.FC = () => {
@@ -307,6 +308,17 @@ const CharacterSheetFiller: React.FC = () => {
             >
               🔍 PDF Field Debugger
             </a>
+            {characterDataArray && characterDataArray.length > 0 && (
+              <button
+                onClick={() => {
+                  const element = document.getElementById('spell-statistics');
+                  element?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="inline-block px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+              >
+                📊 View Spell Statistics
+              </button>
+            )}
           </div>
         </div>
         
@@ -681,6 +693,13 @@ const CharacterSheetFiller: React.FC = () => {
             )}
           </div>
         </div>
+
+        {/* Spell Statistics Section */}
+        {(characterDataArray && characterDataArray.length > 0) && (
+          <div id="spell-statistics" className="mt-8">
+            <SpellStatistics characters={characterDataArray} />
+          </div>
+        )}
       </div>
     </div>
   );
