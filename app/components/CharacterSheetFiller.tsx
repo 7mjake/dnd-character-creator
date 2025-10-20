@@ -182,6 +182,18 @@ const CharacterSheetFiller: React.FC = () => {
     return await zip.generateAsync({ type: 'blob' });
   };
 
+  // Function to open individual character PDF
+  const openIndividualCharacterPDF = async (character: InputModel) => {
+    try {
+      const result = await fillCharacterSheetPdf(character, { action: 'open' });
+      if (!result.success) {
+        setError(`Failed to generate PDF for ${character.identity.name || character.identity.class}: ${result.error || 'Unknown error'}`);
+      }
+    } catch (err) {
+      setError(`Failed to generate PDF for ${character.identity.name || character.identity.class}: ${err instanceof Error ? err.message : 'Unknown error'}`);
+    }
+  };
+
   const fillPDFForm = async (action: 'download' | 'open' = 'download') => {
     if (isBatchMode) {
       if (!characterDataArray || characterDataArray.length === 0) {
@@ -517,9 +529,18 @@ const CharacterSheetFiller: React.FC = () => {
                 </div>
                 {characterDataArray.map((char, index) => (
                   <div key={index} className="border border-gray-200 rounded-lg p-4">
-                    <h3 className="font-semibold text-gray-800 mb-2">
-                      {index + 1}. {char.identity.name || 'Unnamed Character'}
-                    </h3>
+                    <div className="flex justify-between items-start mb-2">
+                      <h3 className="font-semibold text-gray-800">
+                        {index + 1}. {char.identity.name || 'Unnamed Character'}
+                      </h3>
+                      <button
+                        onClick={() => openIndividualCharacterPDF(char)}
+                        className="px-2 py-1 text-blue-500 text-sm rounded hover:bg-blue-50 transition-colors flex items-center gap-1"
+                        title={`Open ${char.identity.name || char.identity.class}'s PDF in new tab`}
+                      >
+                        Preview
+                      </button>
+                    </div>
                     <div className="grid grid-cols-2 gap-4 text-sm text-gray-600">
                       <div>
                         <p><strong>Class:</strong> {char.identity.class} (Level {char.identity.level})</p>
@@ -532,14 +553,7 @@ const CharacterSheetFiller: React.FC = () => {
                         <p><strong>Speed:</strong> {char.combat.speed_ft} ft</p>
                       </div>
                     </div>
-                    {char.spellcasting && (
-                      <div className="mt-2 text-sm text-gray-600">
-                        <p><strong>Spellcasting:</strong> {char.spellcasting.class} ({char.spellcasting.ability ? char.spellcasting.ability.charAt(0).toUpperCase() + char.spellcasting.ability.slice(1) : ''})</p>
-                        <div className="mt-1 p-1 bg-blue-50 border border-blue-200 rounded text-xs text-blue-700">
-                          📄 {hasSpells(char) ? '3 pages' : '2 pages (no spells)'}
-                        </div>
-                      </div>
-                    )}
+                    
                     {!char.spellcasting && (
                       <div className="mt-2 p-1 bg-yellow-50 border border-yellow-200 rounded text-xs text-yellow-700">
                         📄 2 pages (no spells)
