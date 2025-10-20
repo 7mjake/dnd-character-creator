@@ -177,14 +177,28 @@ const CharacterSheetFiller: React.FC = () => {
         const filenames: string[] = [];
 
         // Generate PDFs for each character
+        const filenameCounts: Record<string, number> = {};
+        
         for (let i = 0; i < characterDataArray.length; i++) {
           const character = characterDataArray[i];
           const result = await fillCharacterSheetPdf(character, { action: 'download', returnBlob: true });
           
           if (result.success && result.blob) {
             pdfBlobs.push(result.blob);
-            const safeName = character.identity.name?.replace(/[^a-zA-Z0-9]/g, '_') || 'unnamed_character';
-            filenames.push(`${character.identity.class}_Level${character.identity.level}.pdf`);
+            
+            // Generate unique filename
+            const baseFilename = `${character.identity.class}_Level${character.identity.level}`;
+            const count = filenameCounts[baseFilename] || 0;
+            filenameCounts[baseFilename] = count + 1;
+            
+            let filename = `${baseFilename}.pdf`;
+            if (count > 0) {
+              // Append letter suffix for duplicates (A, B, C, etc.)
+              const suffix = String.fromCharCode(65 + count - 1); // A=65, B=66, etc.
+              filename = `${baseFilename}_${suffix}.pdf`;
+            }
+            
+            filenames.push(filename);
           } else {
             setError(`Failed to generate PDF for ${character.identity.class}_Level${character.identity.level}: ${result.error || 'Unknown error'}`);
             return;
