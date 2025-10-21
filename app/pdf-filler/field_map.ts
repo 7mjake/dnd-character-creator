@@ -29,6 +29,7 @@ export interface InputModel {
   proficiencies: {
     saves: Ability[];  // which saves are proficient
     skills: Skill[];   // which skills are proficient
+    expertise?: Skill[]; // which skills have expertise (double proficiency bonus)
   };
   combat: {
     armor_base_ac?: number | null; // optional override (e.g., chain mail 16 + shield)
@@ -170,7 +171,9 @@ export function computeDerived(model: InputModel) {
   (Object.keys(SKILL_MAP) as Skill[]).forEach(skill => {
     const ab = SKILL_MAP[skill];
     const isProf = model.proficiencies.skills.includes(skill);
-    skills[skill] = mods[ab] + (isProf ? pb : 0);
+    const hasExpertise = model.proficiencies.expertise?.includes(skill) ?? false;
+    const profBonus = isProf ? (hasExpertise ? pb * 2 : pb) : 0;
+    skills[skill] = mods[ab] + profBonus;
   });
 
   const passivePerception = 10 + skills.perception;
@@ -277,25 +280,32 @@ export function toPdfFields(model: InputModel): PdfFields {
   out.wisSave = v.saves.wis >= 0 ? `+${v.saves.wis}` : `${v.saves.wis}`;
   out.charSave = v.saves.cha >= 0 ? `+${v.saves.cha}` : `${v.saves.cha}`;
 
-  // Skills (with + or - prefix)
-  out.acrobatics = v.skills.acrobatics >= 0 ? `+${v.skills.acrobatics}` : `${v.skills.acrobatics}`;
-  out.animalHandling = v.skills.animal_handling >= 0 ? `+${v.skills.animal_handling}` : `${v.skills.animal_handling}`;
-  out.arcana = v.skills.arcana >= 0 ? `+${v.skills.arcana}` : `${v.skills.arcana}`;
-  out.athletics = v.skills.athletics >= 0 ? `+${v.skills.athletics}` : `${v.skills.athletics}`;
-  out.deception = v.skills.deception >= 0 ? `+${v.skills.deception}` : `${v.skills.deception}`;
-  out.history = v.skills.history >= 0 ? `+${v.skills.history}` : `${v.skills.history}`;
-  out.insight = v.skills.insight >= 0 ? `+${v.skills.insight}` : `${v.skills.insight}`;
-  out.intimidation = v.skills.intimidation >= 0 ? `+${v.skills.intimidation}` : `${v.skills.intimidation}`;
-  out.investigation = v.skills.investigation >= 0 ? `+${v.skills.investigation}` : `${v.skills.investigation}`;
-  out.medicine = v.skills.medicine >= 0 ? `+${v.skills.medicine}` : `${v.skills.medicine}`;
-  out.nature = v.skills.nature >= 0 ? `+${v.skills.nature}` : `${v.skills.nature}`;
-  out.perception = v.skills.perception >= 0 ? `+${v.skills.perception}` : `${v.skills.perception}`;
-  out.performance = v.skills.performance >= 0 ? `+${v.skills.performance}` : `${v.skills.performance}`;
-  out.persuasion = v.skills.persuasion >= 0 ? `+${v.skills.persuasion}` : `${v.skills.persuasion}`;
-  out.religion = v.skills.religion >= 0 ? `+${v.skills.religion}` : `${v.skills.religion}`;
-  out.sleightOfHand = v.skills.sleight_of_hand >= 0 ? `+${v.skills.sleight_of_hand}` : `${v.skills.sleight_of_hand}`;
-  out.stealth = v.skills.stealth >= 0 ? `+${v.skills.stealth}` : `${v.skills.stealth}`;
-  out.survival = v.skills.survival >= 0 ? `+${v.skills.survival}` : `${v.skills.survival}`;
+  // Skills (with + or - prefix, and * for expertise)
+  const formatSkillModifier = (skill: Skill, modifier: number) => {
+    const hasExpertise = model.proficiencies.expertise?.includes(skill) ?? false;
+    const prefix = modifier >= 0 ? '+' : '';
+    const asterisk = hasExpertise ? '*' : '';
+    return `${prefix}${modifier}${asterisk}`;
+  };
+
+  out.acrobatics = formatSkillModifier("acrobatics", v.skills.acrobatics);
+  out.animalHandling = formatSkillModifier("animal_handling", v.skills.animal_handling);
+  out.arcana = formatSkillModifier("arcana", v.skills.arcana);
+  out.athletics = formatSkillModifier("athletics", v.skills.athletics);
+  out.deception = formatSkillModifier("deception", v.skills.deception);
+  out.history = formatSkillModifier("history", v.skills.history);
+  out.insight = formatSkillModifier("insight", v.skills.insight);
+  out.intimidation = formatSkillModifier("intimidation", v.skills.intimidation);
+  out.investigation = formatSkillModifier("investigation", v.skills.investigation);
+  out.medicine = formatSkillModifier("medicine", v.skills.medicine);
+  out.nature = formatSkillModifier("nature", v.skills.nature);
+  out.perception = formatSkillModifier("perception", v.skills.perception);
+  out.performance = formatSkillModifier("performance", v.skills.performance);
+  out.persuasion = formatSkillModifier("persuasion", v.skills.persuasion);
+  out.religion = formatSkillModifier("religion", v.skills.religion);
+  out.sleightOfHand = formatSkillModifier("sleight_of_hand", v.skills.sleight_of_hand);
+  out.stealth = formatSkillModifier("stealth", v.skills.stealth);
+  out.survival = formatSkillModifier("survival", v.skills.survival);
 
   // Combat stats
   out.profBonus = v.prof_bonus >= 0 ? `+${v.prof_bonus}` : `${v.prof_bonus}`;
@@ -543,6 +553,26 @@ export function toPdfFields(model: InputModel): PdfFields {
   out.sleightOfHandProf = model.proficiencies.skills.includes("sleight_of_hand");
   out.stealthProf = model.proficiencies.skills.includes("stealth");
   out.survivalProf = model.proficiencies.skills.includes("survival");
+
+  // Expertise flags for skills
+  out.acrobaticsExpertise = model.proficiencies.expertise?.includes("acrobatics") ?? false;
+  out.animalHandlingExpertise = model.proficiencies.expertise?.includes("animal_handling") ?? false;
+  out.arcanaExpertise = model.proficiencies.expertise?.includes("arcana") ?? false;
+  out.athleticsExpertise = model.proficiencies.expertise?.includes("athletics") ?? false;
+  out.deceptionExpertise = model.proficiencies.expertise?.includes("deception") ?? false;
+  out.historyExpertise = model.proficiencies.expertise?.includes("history") ?? false;
+  out.insightExpertise = model.proficiencies.expertise?.includes("insight") ?? false;
+  out.intimidationExpertise = model.proficiencies.expertise?.includes("intimidation") ?? false;
+  out.investigationExpertise = model.proficiencies.expertise?.includes("investigation") ?? false;
+  out.medicineExpertise = model.proficiencies.expertise?.includes("medicine") ?? false;
+  out.natureExpertise = model.proficiencies.expertise?.includes("nature") ?? false;
+  out.perceptionExpertise = model.proficiencies.expertise?.includes("perception") ?? false;
+  out.performanceExpertise = model.proficiencies.expertise?.includes("performance") ?? false;
+  out.persuasionExpertise = model.proficiencies.expertise?.includes("persuasion") ?? false;
+  out.religionExpertise = model.proficiencies.expertise?.includes("religion") ?? false;
+  out.sleightOfHandExpertise = model.proficiencies.expertise?.includes("sleight_of_hand") ?? false;
+  out.stealthExpertise = model.proficiencies.expertise?.includes("stealth") ?? false;
+  out.survivalExpertise = model.proficiencies.expertise?.includes("survival") ?? false;
 
   return out;
 }

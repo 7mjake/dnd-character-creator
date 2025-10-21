@@ -31,7 +31,8 @@
         "intimidation",
         "insight",
         "religion"
-      ]
+      ],
+      "expertise": []
     },
     "combat": {
       "armor_base_ac": 18,
@@ -137,7 +138,8 @@
         "intimidation",
         "survival",
         "perception"
-      ]
+      ],
+      "expertise": []
     },
     "combat": {
       "armor_base_ac": 18,
@@ -226,7 +228,8 @@
         "arcana",
         "sleight_of_hand",
         "persuasion"
-      ]
+      ],
+      "expertise": []
     },
     "combat": {
       "armor_base_ac": 13,
@@ -341,6 +344,10 @@
         "sleight_of_hand",
         "investigation",
         "perception"
+      ],
+      "expertise": [
+        "stealth",
+        "sleight_of_hand"
       ]
     },
     "combat": {
@@ -430,7 +437,8 @@
         "investigation",
         "insight",
         "perception"
-      ]
+      ],
+      "expertise": []
     },
     "combat": {
       "armor_base_ac": 13,
@@ -551,7 +559,8 @@
         "insight",
         "religion",
         "persuasion"
-      ]
+      ],
+      "expertise": []
     },
     "combat": {
       "armor_base_ac": 18,
@@ -667,7 +676,8 @@
         "deception",
         "survival",
         "persuasion"
-      ]
+      ],
+      "expertise": []
     },
     "combat": {
       "armor_base_ac": 15,
@@ -776,7 +786,8 @@
         "survival",
         "intimidation",
         "nature"
-      ]
+      ],
+      "expertise": []
     },
     "combat": {
       "armor_base_ac": 15,
@@ -982,6 +993,10 @@
         "survival",
         "nature",
         "investigation"
+      ],
+      "expertise": [
+        "survival",
+        "perception"
       ]
     },
     "combat": {
@@ -1086,6 +1101,10 @@
         "insight",
         "deception",
         "history"
+      ],
+      "expertise": [
+        "performance",
+        "persuasion"
       ]
     },
     "combat": {
@@ -1198,7 +1217,8 @@
         "medicine",
         "nature",
         "survival"
-      ]
+      ],
+      "expertise": []
     },
     "combat": {
       "armor_base_ac": 14,

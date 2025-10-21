@@ -143,6 +143,15 @@
             "enum": ["athletics", "acrobatics", "sleight_of_hand", "stealth", "arcana", "history", "investigation", "nature", "religion", "animal_handling", "insight", "medicine", "perception", "survival", "deception", "intimidation", "performance", "persuasion"]
           },
           "examples": [["athletics", "intimidation", "survival"], ["arcana", "history", "investigation", "insight"], ["acrobatics", "deception", "investigation", "perception", "sleight_of_hand", "stealth"]]
+        },
+        "expertise": {
+          "type": "array",
+          "description": "Skills with expertise (double proficiency bonus)",
+          "items": {
+            "type": "string",
+            "enum": ["athletics", "acrobatics", "sleight_of_hand", "stealth", "arcana", "history", "investigation", "nature", "religion", "animal_handling", "insight", "medicine", "perception", "survival", "deception", "intimidation", "performance", "persuasion"]
+          },
+          "examples": [["stealth", "sleight_of_hand"], ["arcana", "investigation"], ["persuasion", "deception"]]
         }
       },
       "required": ["saves", "skills"]
@@ -481,7 +490,8 @@
       },
       "proficiencies": {
         "saves": ["str", "con"],
-        "skills": ["athletics", "intimidation", "survival"]
+        "skills": ["athletics", "intimidation", "survival"],
+        "expertise": []
       },
       "combat": {
         "armor_base_ac": 18,
